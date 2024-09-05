@@ -57,3 +57,5 @@ def accept_client(server_socket):
     print(f"Conexão estabelecida com {addr}")
     return client_socket
 
+print(extract_time_stamp("id{99}/timestamp{99999999}"))
+print(extract_id("/id{99}/timestamp{99999999}"))

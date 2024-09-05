@@ -14,14 +14,23 @@ client_new_message = ""
 global write_message
 write_message = ""
 
+global my_message
+my_message = ""
+
 global n_elements
 n_elements = 5
 
 global cluster_messages
-cluster_messages = [0,0,0,0,0]
+cluster_messages = ["","","","",""]
 for i in cluster_messages:
-    i = 999999999
+    i = "/id{99}/timestamp{99999999}"
 
+def less_timestamp():
+    menor = -1
+    for elemento in cluster_messages:  
+        if extract_time_stamp(elemento) < menor:
+            menor = extract_time_stamp(elemento)
+    return menor
 
 def listen_client(client_socket):
     global client_new_message
@@ -36,20 +45,22 @@ def listen_client(client_socket):
 
         if "client/" in client_new_message: 
             if write_message == "":
-                #realizar comparação entre os timestamps
                 write_message = client_new_message
                 send_data(client_socket,"commited")
             else:
                 send_data(client_socket, "sleep")
-            #realizar controle de timestamps repetidos
 
 
 def client_server():
     global client_new_message
     global write_message
+    global cluster_messages
+
     write_message = ""
-    server_socket = create_server('0.0.0.0',int(os.getenv('PORT')))
+    server_socket = create_server('0.0.0.0', int(os.getenv('PORT')))
     client_socket = accept_client(server_socket)
+
+    my_port = int(os.getenv('PORT')+1000)
 
     client_server_thread = threading.Thread(target=listen_client,args=(client_socket,))
     client_server_thread.start()
@@ -57,9 +68,23 @@ def client_server():
     try:
         while True:
             if write_message != "":
+
+                my_id = int(os.getenv('ID'))
+                my_timestamp = extract_time_stamp(write_message)
+                my_message = "cluster/id{" + str(my_id)+"}/timestamp{" + my_timestamp +"}"
+                cluster_messages[my_id] = my_message
+
+                broadcast_cluster(my_message, my_port);
+                time.sleep(2)
                 write_timestamp_and_id(write_message)
-                write_message = ""
-                time.sleep(5)
+
+                if less_timestamp() == extract_time_stamp(my_message):
+                    write_timestamp_and_id(write_message)
+
+                    write_message = ""
+                    my_message = "cluster/id{" + str(my_id)+"}/timestamp{999999999}"
+                    broadcast_cluster(my_message, my_port);
+
 
     except OSError as e:
         print(f"Erro ao receber dados: {e}")
@@ -78,6 +103,8 @@ def cluster_server():
     cluster_socket.bind(('0.0.0.0', port))
     cluster_socket.listen(5)
     print(f"Server running on port {port}")
+    time.sleep(5)  # Espera o servidor iniciar
+
 
     while True:
         client_socket, addr = cluster_socket.accept()
@@ -87,40 +114,36 @@ def cluster_server():
         
         if "cluster/" in message:
             i = extract_id(message)
-            cluster_messages[i] = extract_time_stamp(message)
+            cluster_messages[i] = "cluster/id{"+i+"}/timestamp{"+extract_time_stamp(message)+"}"
 
         client_socket.close()
 
-def send_message(target_host, target_port, message):
-    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client_socket.connect((target_host, target_port))
-    client_socket.send(message.encode('utf-8'))
-    client_socket.close()
-
-
-if __name__ == "__main__":
-    targets = [
+def broadcast_cluster(message, port):
+    targets = [  # Corrigido o nome da variável
         ('element1', 6000),
         ('element2', 6001),
         ('element3', 6002),
         ('element4', 6003),
         ('element5', 6004)
-    ]    
+    ]
+    for element,target_port in targets:
+        if target_port != port:  # Evita enviar para si mesmo
+            client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+            client_socket.connect(('localhost', target_port)) 
+            client_socket.close()
+            print(f"Message sent to {'localhost'}:{target_port}")
+
+
+if __name__ == "__main__":
+
     #Escuta o cliente
     client_thread = threading.Thread(target=client_server).start()
 
     #Escuta o cluster
     cluster_thread = threading.Thread(target=cluster_server).start()
-    time.sleep(5)  # Espera o servidor iniciar
     #------------------------------------
-
-    message = os.getenv('MESSAGE', f"Hello from element running on port {port}")
-
-    for target_host, target_port in targets:
-        if target_port != port:  # Evita enviar para si mesmo
-            send_message(target_host, target_port, message)
-            print(f"Message sent to {target_host}:{target_port}")
 
     #------------------------------------
     client_thread.join()
-    client_thread.join()
+    cluster_thread.join()
