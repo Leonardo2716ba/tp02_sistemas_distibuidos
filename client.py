@@ -15,7 +15,7 @@ def main():
     client_id = int(input("Digite o id do cliente: "))
     try:
         i = 0
-        while True:
+        while i < 25:
             #message = input("Digitar mernsagem:")
             if not commited:
                 timestamp = get_current_timestamp()
@@ -31,14 +31,10 @@ def main():
             print(cluster_command)
             if cluster_command == "sleep":   
                 time.sleep(5)  # Pausa de 5 segundos para dar tempo ao servidor processar
-            
-            elif cluster_command == "commited":
+
+            elif cluster_command == "committed":
                 i+=1
-                commited = False
-            elif cluster_command == "change_timestamp":
-                timestamp = get_current_timestamp()
-            else:
-                print(cluster_command)
+                commited = False                
 
 
     except OSError as e:

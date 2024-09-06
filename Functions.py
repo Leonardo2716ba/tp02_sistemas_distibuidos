@@ -19,15 +19,11 @@ def send_data(client_socket, message):
     except OSError as e:
         print(f"Erro ao enviar dados: {e}")    
     
-# Função para extrair o timestamp
-def extract_time_stamp(string):
-    match = re.search(r"time\{(\d+)\}", string)
-    return int(match.group(1)) if match else None
 
 # Função para extrair a mensagem
 def extract_message(string):
     match = re.search(r"message\{(.+)\}", string)
-    return match.group(1) if match else None
+    return match.group(1) if match else -1
 
 def get_current_timestamp():
     return int(time.time())
@@ -37,12 +33,12 @@ def extract_id(string):
     match = re.search(r"client/id\{(\d+)\}", string)
     match = re.search(r"/id\{(\d+)\}", string)
 
-    return int(match.group(1)) if match else None
+    return int(match.group(1)) if match else -1
 
 def extract_time_stamp(string):
     # Ajusta a expressão regular para corresponder ao formato correto
     match = re.search(r"timestamp\{(\d+)\}", string)
-    return int(match.group(1)) if match else None
+    return int(match.group(1)) if match else -1
 
 def write_timestamp_and_id(message):
     container_id = int(os.getenv('PORT')) - 5000
