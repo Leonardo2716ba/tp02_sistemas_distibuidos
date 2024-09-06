@@ -7,9 +7,6 @@ COPY Functions.py /app/Functions.py
 
 # Definir o diretório de trabalho
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 12345
-
 
 # Comando para executar o script
 CMD ["python", "script.py"]

@@ -7,8 +7,14 @@ file_path = "/shared/output.txt"
 def receive_data(client):
     return client.recv(1024).decode('utf-8')
 
-def send_data(client, message):
-    client.send(message.encode('utf-8'))      
+def send_data(client_socket, message):
+    try:
+        if not client_socket._closed:
+            client_socket.send(message.encode('utf-8'))
+        else:
+            print("Tentativa de enviar dados em um socket fechado.")
+    except OSError as e:
+        print(f"Erro ao enviar dados: {e}")    
 
 # Função para extrair o timestamp
 def extract_time_stamp(string):
@@ -57,5 +63,3 @@ def accept_client(server_socket):
     print(f"Conexão estabelecida com {addr}")
     return client_socket
 
-print(extract_time_stamp("id{99}/timestamp{99999999}"))
-print(extract_id("/id{99}/timestamp{99999999}"))
