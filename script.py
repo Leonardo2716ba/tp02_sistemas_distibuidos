@@ -2,27 +2,7 @@ import socket
 import threading
 import os
 import time
-from Functions import *
 from datetime import datetime
-
-def listen_client(client_socket):
-    global client_message  # Permite modificar a variável global client_message
-
-    while True:
-        # Recebe a mensagem do cliente
-        message = client_socket.recv(1024).decode('utf-8')
-
-        if not message:  # Se a mensagem estiver vazia, o cliente fechou a conexão
-            print("Conexão fechada pelo cliente.")
-            break
-
-        # Se a mensagem contém "client/" e ainda não há mensagem armazenada
-        if "client/" in message and client_message == "": 
-            client_message = message
-            send_data(client_socket, "committed")  # Confirma que a mensagem foi armazenada
-        else:
-            send_data(client_socket, "sleep")  # Informa que não pode processar a mensagem agora
-
 
 # Variáveis de ambiente
 container_id = int(os.getenv('ID'))
@@ -30,19 +10,7 @@ cluster_port = int(os.getenv('CLUSTER_PORT'))
 shared_file = '/shared/output.txt'
 containers = [{'id': i, 'cluster_port': 6000 + i} for i in range(5)]  # Criação dinâmica da lista de containers
 
-def listen_client(client_socket):
-    while True:
-        message = ""
-        message = client_socket.recv(1024).decode('utf-8')
-        if not message:  # Se a mensagem estiver vazia, significa que o cliente fechou a conexão
-            print("Conexão fechada pelo cliente.")
-            break
-
-        if "client/" in message and client_message == "": 
-            client_message = message
-            send_data(client_socket,"commited")
-        else:
-            send_data(client_socket, "sleep")
+timestamp = datetime.now().timestamp()  # Timestamp gerado na inicialização
 
 # Função do servidor para lidar com requisições de outros containers
 def server():
@@ -59,11 +27,8 @@ def handle_request(conn):
     global timestamp
     data = conn.recv(1024).decode()
     if data == 'REQUEST':
-        timestamp = datetime.now().timestamp()  #Envia o timestamp atual caso queira escrever
-        conn.sendall(str(timestamp).encode())  
-    else:
-        timestamp = -1; #Envia -1 caso não queira escrever
-        conn.sendall(str(timestamp).encode()) 
+        timestamp = datetime.now().timestamp()  # Atualiza o timestamp
+        conn.sendall(str(timestamp).encode())  # Responde com o timestamp
     conn.close()
 
 # Função para enviar mensagem a outro container e receber resposta
@@ -84,27 +49,17 @@ def compare_by_timestamp(container_data):
 # Função de votação e escrita no arquivo
 def vote_and_write():
     global timestamp
-    timestamp = datetime.now().timestamp()  # Inicializa o timestamp para o container atual
     interested_containers = [
         (container, float(send_message(container, 'REQUEST')))
         for container in containers if container['id'] != container_id
     ]
     interested_containers = [(container_id, timestamp)] + [c for c in interested_containers if c[1]]
 
-    # Inicializa o menor container e timestamp com os primeiros da lista
-    min_container = interested_containers[0]
-
-    # Itera por todos os containers interessados para encontrar o menor timestamp
-    for container_data in interested_containers:
-        # Verifica se o timestamp atual é menor que o menor timestamp já encontrado
-        if container_data[1] < min_container[1] and container_data != -1:
-            min_container = container_data  # Atualiza o menor container
-
     # Verifica se este container tem o menor timestamp
-    if min_container[0] == container_id:
+    if min(interested_containers, key=compare_by_timestamp)[0] == container_id:
         print(f"Container {container_id} venceu a votação e está escrevendo no arquivo.")
         with open(shared_file, 'a') as f:
-            f.write(f"Container {container_id}: {timestamp}\n")
+            f.write(f"Container {container_id} escreveu no arquivo em {datetime.now()}\n")
     else:
         print(f"Container {container_id} perdeu a votação.")
 
@@ -117,3 +72,4 @@ def initiate_vote():
 
 # Inicia o servidor e o processo de votação
 threading.Thread(target=server, daemon=True).start()
+initiate_vote()

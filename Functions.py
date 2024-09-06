@@ -13,9 +13,12 @@ def send_data(client_socket, message):
             client_socket.send(message.encode('utf-8'))
         else:
             print("Tentativa de enviar dados em um socket fechado.")
+    except ConnectionRefusedError:
+        print(f"Falha ao conectar no container {client_socket['id']}")
+        return "-1"  # Retorna -1 para indicar falha na conexão
     except OSError as e:
         print(f"Erro ao enviar dados: {e}")    
-
+    
 # Função para extrair o timestamp
 def extract_time_stamp(string):
     match = re.search(r"time\{(\d+)\}", string)

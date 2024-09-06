@@ -37,6 +37,8 @@ def main():
                 commited = False
             elif cluster_command == "change_timestamp":
                 timestamp = get_current_timestamp()
+            else:
+                print(cluster_command)
 
 
     except OSError as e:
