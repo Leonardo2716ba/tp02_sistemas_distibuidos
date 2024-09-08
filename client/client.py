@@ -3,7 +3,7 @@ import time
 from Functions import *
 
 def main():
-    host = 'localhost'
+    host = '0.0.0.0'
     #host = '192.168.31.108'
     port = int(os.getenv('PORT'))
     commited = False
