@@ -4,26 +4,30 @@ import random
 from Functions import *
 
 def main():
-    host = '0.0.0.0'
-    #host = '192.168.31.108'
+    host = '0.0.0.0' #Maquina local
+    #192.168.0.102
+    host = '192.168.31.108'
+    
     port = int(os.getenv('PORT'))
     client_id = int(os.getenv('ID'))
 
-    commited = False
+    new_timestamp = False
     
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect((host, port))  # Conectar ao servidor
     try:
         i = 0
         while True:
-            if not commited:
+            if not new_timestamp:
                 timestamp = get_current_timestamp()
-                commited = True
+                new_timestamp = True
 
             message = "client "+ str(client_id)+ " time: "+ str(timestamp) + " - message: "+ str(i)
             data = "client/id{"+ str(client_id) +"}/timestamp{"+ str(timestamp) + "}/message{"+ str(message) +"}"
+
             if i >= 50:
                 data = ""
+                
             client_socket.send(data.encode('utf-8'))
             cluster_command = receive_data(client_socket)
             print(cluster_command)
@@ -31,7 +35,7 @@ def main():
                 time.sleep(random.randint(1, 5)) 
             elif cluster_command == "committed":
                 i+=1
-                commited = False
+                new_timestamp = False
 
 
     except OSError as e:
