@@ -13,7 +13,7 @@ shared_file = '/shared/output.txt'
 containers = [{'id': i, 'cluster_port': 6000 + i} for i in range(5)]  # Criação dinâmica da lista de containers
 
 # Variáveis globais
-client_message = ""  # Mensagem do cliente a ser escrita no arquivo
+message_to_write = ""  # Mensagem do cliente a ser escrita no arquivo
 message_timestamp = float(9**10)
 client_timestamp = float(9**10)
 
@@ -25,27 +25,30 @@ def server():
         server_socket.listen()
         print(f"Container {container_id} ouvindo na porta {cluster_port}...")
         while True:
-            conn, _ = server_socket.accept()
-            threading.Thread(target=handle_request, args=(conn,)).start()
+            cluster_element, _ = server_socket.accept()
+            threading.Thread(target=handle_request, args=(cluster_element,)).start()
 
 # Função que processa a requisição recebida
-def handle_request(conn):
-    data = conn.recv(1024).decode()
+def handle_request(cluster_element):
+    data = cluster_element.recv(1024).decode()
     if data == 'REQUEST':
-        if  client_message != "":
-            conn.sendall(str(client_timestamp).encode())
+        if  message_to_write != "":
+            cluster_element.send(str(client_timestamp).encode())
         else:
-            conn.sendall("-1".encode())
+            cluster_element.send("-1".encode())
         # Responde com o timestamp da última mensagem
-    conn.close()
+    cluster_element.close()
 
 # Função para enviar mensagem a outro container e receber resposta
-def send_message(container, message):
+def receive_time_stamp(container):
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+            
             sock.connect((f"container_{container['id'] + 1}", container['cluster_port']))
-            sock.sendall(message.encode())
+            sock.send('REQUEST'.encode())
+
             return sock.recv(1024).decode()
+        
     except ConnectionRefusedError:
         print(f"Falha ao conectar no container {container['id']}")
         return None
@@ -55,19 +58,15 @@ def compare_by_timestamp(container_data):
     return container_data[1]
 
 def vote_and_write():
-    global client_message, message_timestamp, client_timestamp
+    global message_to_write, message_timestamp, client_timestamp
 
-    if client_message == "":
-        print(f"Container {container_id} não tem mensagem para escrever.")
-        return
-
-    # Obtém os timestamps de todos os containers interessados e remove aqueles com timestamp -1
+    # Obtém os timestamps de todos os containers interessados
     interested_containers = [
-        (container, float(send_message(container, 'REQUEST')))
+        (container, float(receive_time_stamp(container)))
         for container in containers if container['id'] != container_id
     ]
     
-    # Inclui o timestamp do container atual e remove aqueles cujo timestamp é -1
+    # Inclui o timestamp do container atual e remove aqueles cujo timestamp é -1 
     interested_containers = [(container_id, client_timestamp)] + [c for c in interested_containers if c[1] is (not None) or (c[1] != "-1")]
 
     if not interested_containers:
@@ -81,22 +80,24 @@ def vote_and_write():
         print(f"Container {container_id} venceu a votação e está escrevendo no arquivo.")
         with open(shared_file, 'a') as f:
             f.write(f"Container {container_id} escreveu no arquivo em {datetime.now()} - {min_container[1]}\n")
-            f.write(f"Mensagem: {client_message}\n")  # Adiciona a mensagem recebida
+            f.write(f"Mensagem: {message_to_write}\n")  # Adiciona a mensagem recebida
         
-        client_message = ""  # Limpa a mensagem depois de escrever
+        message_to_write = ""  # Limpa a mensagem depois de escrever
     else:
         print(f"Container {container_id} perdeu a votação.")
 
 # Função que inicia o ciclo de votação periodicamente
 def initiate_vote():
     while True:
-        time.sleep(5)
-        print(f"Container {container_id} está iniciando uma votação para escrever.")
-        vote_and_write()
+        if message_to_write == "":
+            time.sleep(5)
+        else:
+            vote_and_write()
+            print(f"Container {container_id} está iniciando uma votação para escrever.")
 
 # Função para ouvir as mensagens dos clientes e processar
 def listen_client(client_socket):
-    global client_message, client_timestamp
+    global message_to_write, client_timestamp
 
     while True:
         message = client_socket.recv(1024).decode('utf-8')
@@ -106,13 +107,12 @@ def listen_client(client_socket):
             break
 
         # Extrai a mensagem e o timestamp da string recebida
-        if message != "" and client_message == "":
-            client_message = extract_message(message)
+        if message != "" and message_to_write == "":
+            message_to_write = extract_message(message)
             client_timestamp = extract_time_stamp(message)
             send_data(client_socket, "committed")  # Confirma que a mensagem foi armazenada
         else:
             send_data(client_socket, "sleep")  # Informa que não pode processar a mensagem agora
-
 
 
 # Inicia o servidor para escutar o cluster
