@@ -10,7 +10,7 @@ def client_code(host, port):
     commited = False
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect((host, port))  # Conectar ao servidor
-    timestamp = 999999999
+    timestamp = 999999999 #inicializa
     client_id = port - 5000
     lim = 10
     try:

@@ -11,6 +11,7 @@ def create_containers(elements):
 def receive_data(client):
     return client.recv(1024).decode('utf-8')
 
+#enviando a mensagem para o servidor
 def send_data(client_socket, message):
     try:
         if not client_socket._closed:

@@ -7,7 +7,7 @@ from Functions import *
 def main():
     host = '0.0.0.0' #Maquina local
     #192.168.0.102
-    host = '192.168.31.108'
+    host = '192.168.31.108' 
     
     port = int(os.getenv('PORT'))
     client_id = int(os.getenv('ID'))
@@ -29,9 +29,13 @@ def main():
             if i >= 50:
                 data = ""
                 
+            #envia a mensagem
             client_socket.send(data.encode('utf-8'))
+
+            #recebe uma instrução
             cluster_command = receive_data(client_socket)
             print(cluster_command)
+            
             if cluster_command == "sleep":   
                 time.sleep(random.randint(1, 5)) 
             elif cluster_command == "committed":

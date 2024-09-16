@@ -1,0 +1,88 @@
+Container 4 escreveu no arquivo em 2024-09-12 20:28:02.340811 - 1726172880
+Mensagem: client 4 time: 1726172880 - message: 0
+Container 3 escreveu no arquivo em 2024-09-12 20:28:02.341680 - 1726172880
+Mensagem: client 3 time: 1726172880 - message: 0
+Container 1 escreveu no arquivo em 2024-09-12 20:28:02.407078 - 1726172880
+Mensagem: client 1 time: 1726172880 - message: 0
+Container 2 escreveu no arquivo em 2024-09-12 20:28:02.424118 - 1726172880
+Mensagem: client 2 time: 1726172880 - message: 0
+Container 3 escreveu no arquivo em 2024-09-12 20:36:45.130478 - 1726173400
+Mensagem: client 3 time: 1726173400 - message: 0
+Container 1 escreveu no arquivo em 2024-09-12 20:36:45.223980 - 1726173400
+Mensagem: client 1 time: 1726173400 - message: 0
+Container 2 escreveu no arquivo em 2024-09-12 20:36:45.231691 - 1726173400
+Mensagem: client 2 time: 1726173400 - message: 0
+Container 4 escreveu no arquivo em 2024-09-12 20:36:45.289535 - 1726173400
+Mensagem: client 4 time: 1726173400 - message: 0
+Container 3 escreveu no arquivo em 2024-09-12 20:36:50.148078 - 1726173400
+Mensagem: client 3 time: 1726173400 - message: 1
+Container 1 escreveu no arquivo em 2024-09-12 20:36:50.245189 - 1726173400
+Mensagem: client 1 time: 1726173400 - message: 1
+Container 2 escreveu no arquivo em 2024-09-12 20:36:50.247501 - 1726173400
+Mensagem: client 2 time: 1726173400 - message: 1
+Container 4 escreveu no arquivo em 2024-09-12 20:36:50.309753 - 1726173400
+Mensagem: client 4 time: 1726173400 - message: 1
+Container 3 escreveu no arquivo em 2024-09-12 20:36:55.168025 - 1726173408
+Mensagem: client 3 time: 1726173408 - message: 2
+Container 1 escreveu no arquivo em 2024-09-12 20:36:55.260880 - 1726173405
+Mensagem: client 1 time: 1726173405 - message: 2
+Container 2 escreveu no arquivo em 2024-09-12 20:36:55.261216 - 1726173406
+Mensagem: client 2 time: 1726173406 - message: 2
+Container 4 escreveu no arquivo em 2024-09-12 20:36:55.325895 - 1726173405
+Mensagem: client 4 time: 1726173405 - message: 2
+Container 3 escreveu no arquivo em 2024-09-12 20:37:00.190977 - 1726173411
+Mensagem: client 3 time: 1726173411 - message: 3
+Container 2 escreveu no arquivo em 2024-09-12 20:37:00.283687 - 1726173412
+Mensagem: client 2 time: 1726173412 - message: 3
+Container 1 escreveu no arquivo em 2024-09-12 20:37:00.283815 - 1726173411
+Mensagem: client 1 time: 1726173411 - message: 3
+Container 4 escreveu no arquivo em 2024-09-12 20:37:00.346479 - 1726173410
+Mensagem: client 4 time: 1726173410 - message: 3
+Container 3 escreveu no arquivo em 2024-09-12 20:37:05.264363 - 1726173419
+Mensagem: client 3 time: 1726173419 - message: 4
+Container 1 escreveu no arquivo em 2024-09-12 20:37:05.303736 - 1726173416
+Mensagem: client 1 time: 1726173416 - message: 4
+Container 2 escreveu no arquivo em 2024-09-12 20:37:05.303903 - 1726173418
+Mensagem: client 2 time: 1726173418 - message: 4
+Container 4 escreveu no arquivo em 2024-09-12 20:37:05.362557 - 1726173415
+Mensagem: client 4 time: 1726173415 - message: 4
+Container 3 escreveu no arquivo em 2024-09-12 21:12:14.907161 - 1726175530
+Mensagem: client 3 time: 1726175530 - message: 0
+Container 1 escreveu no arquivo em 2024-09-12 21:12:15.000548 - 1726175530
+Mensagem: client 1 time: 1726175530 - message: 0
+Container 2 escreveu no arquivo em 2024-09-12 21:12:15.077781 - 1726175530
+Mensagem: client 2 time: 1726175530 - message: 0
+Container 4 escreveu no arquivo em 2024-09-12 21:12:15.124441 - 1726175530
+Mensagem: client 4 time: 1726175530 - message: 0
+Container 3 escreveu no arquivo em 2024-09-12 21:12:19.937768 - 1726175530
+Mensagem: client 3 time: 1726175530 - message: 1
+Container 1 escreveu no arquivo em 2024-09-12 21:12:20.018432 - 1726175530
+Mensagem: client 1 time: 1726175530 - message: 1
+Container 2 escreveu no arquivo em 2024-09-12 21:12:20.094185 - 1726175530
+Mensagem: client 2 time: 1726175530 - message: 1
+Container 4 escreveu no arquivo em 2024-09-12 21:12:20.143928 - 1726175530
+Mensagem: client 4 time: 1726175530 - message: 1
+Container 3 escreveu no arquivo em 2024-09-12 21:12:24.959366 - 1726175538
+Mensagem: client 3 time: 1726175538 - message: 2
+Container 1 escreveu no arquivo em 2024-09-12 21:12:25.027751 - 1726175539
+Mensagem: client 1 time: 1726175539 - message: 2
+Container 2 escreveu no arquivo em 2024-09-12 21:12:25.103630 - 1726175536
+Mensagem: client 2 time: 1726175536 - message: 2
+Container 4 escreveu no arquivo em 2024-09-12 21:12:25.147464 - 1726175538
+Mensagem: client 4 time: 1726175538 - message: 2
+Container 3 escreveu no arquivo em 2024-09-12 21:12:29.993314 - 1726175541
+Mensagem: client 3 time: 1726175541 - message: 3
+Container 1 escreveu no arquivo em 2024-09-12 21:12:30.043733 - 1726175544
+Mensagem: client 1 time: 1726175544 - message: 3
+Container 2 escreveu no arquivo em 2024-09-12 21:12:30.124871 - 1726175541
+Mensagem: client 2 time: 1726175541 - message: 3
+Container 4 escreveu no arquivo em 2024-09-12 21:12:30.157368 - 1726175544
+Mensagem: client 4 time: 1726175544 - message: 3
+Container 3 escreveu no arquivo em 2024-09-12 21:12:35.015839 - 1726175545
+Mensagem: client 3 time: 1726175545 - message: 4
+Container 1 escreveu no arquivo em 2024-09-12 21:12:35.061975 - 1726175548
+Mensagem: client 1 time: 1726175548 - message: 4
+Container 2 escreveu no arquivo em 2024-09-12 21:12:35.150364 - 1726175547
+Mensagem: client 2 time: 1726175547 - message: 4
+Container 4 escreveu no arquivo em 2024-09-12 21:12:35.170509 - 1726175548
+Mensagem: client 4 time: 1726175548 - message: 4
