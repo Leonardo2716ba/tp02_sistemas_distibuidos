@@ -1,6 +1,7 @@
 import socket
 import time
 import random
+from datetime import datetime
 from Functions import *
 
 def main():
@@ -19,7 +20,7 @@ def main():
         i = 0
         while True:
             if not new_timestamp:
-                timestamp = get_current_timestamp()
+                timestamp = datetime.now().timestamp()
                 new_timestamp = True
 
             message = "client "+ str(client_id)+ " time: "+ str(timestamp) + " - message: "+ str(i)
