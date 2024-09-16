@@ -4,6 +4,10 @@ import socket
 import os
 file_path = "/shared/output.txt"
 
+def create_containers(elements):
+    #        [0]            [1]                      [2]            [3]
+    return [{'id': i, 'cluster_port': 6000 + i, 'timestamp':-2, 'start': "no"} for i in range(elements)]
+
 def receive_data(client):
     return client.recv(1024).decode('utf-8')
 
@@ -25,30 +29,15 @@ def extract_message(string):
     match = re.search(r"message\{(.+)\}", string)
     return match.group(1) if match else -1
 
-def get_current_timestamp():
-    return int(time.time())
-
 def extract_id(string):
     # Ajusta a expressão regular para corresponder ao formato correto
-    match = re.search(r"client/id\{(\d+)\}", string)
-    match = re.search(r"/id\{(\d+)\}", string)
+    match = re.search(r"id\{(\d+)\}", string)
 
     return int(match.group(1)) if match else -1
 
-def extract_time_stamp(string):
-    # Ajusta a expressão regular para corresponder ao formato correto
-    match = re.search(r"timestamp\{(\d+)\}", string)
-    return int(match.group(1)) if match else -1
-
-def write_timestamp_and_id(message):
-    container_id = int(os.getenv('PORT')) - 5000
-    #timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    timestamp = extract_time_stamp(message)
-    client_id = extract_id(message)
-    w_message = extract_message(message)
-    print(f"ID: {container_id}, Client:{client_id}, Timestamp: {timestamp}, Message: {w_message}")
-    with open(file_path, "a") as f:
-        f.write(f"ID: {container_id}, Client:{client_id}, Timestamp: {timestamp}, Message: {w_message}\n")
+def extract_timestamp(string):
+    match = re.search(r"timestamp\{([\d.]+)\}", string)
+    return float(match.group(1)) if match else -1.0
 
 def create_server(host,port):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -62,3 +51,32 @@ def accept_client(server_socket):
     print(f"Conexão estabelecida com {addr}")
     return client_socket
 
+# Função de comparação de timestamps
+def compare_by_timestamp(container_data):
+    return container_data[1]
+
+def all_ok(containers):
+    i = 0
+    for con in containers:
+        if con['start'] == "OK":
+            i += 1
+    return i == (len(containers) - 1)
+
+def received_timestamps(containers):
+    i = 0
+    for con in containers:
+        if con['timestamp'] != -2:
+            i += 1
+    return i == len(containers)
+
+#print(create_containers())
+#print(extract_timestamp("timestamp{13212}"))
+#print(extract_id("id{13212}"))
+
+containers = create_containers(5)
+
+#for con in containers:
+#    con['timestamp'] = 3
+
+#containers[2]['timestamp'] = -2
+print(received_timestamps(containers))
