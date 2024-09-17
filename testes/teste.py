@@ -1,5 +1,3 @@
-from datetime import datetime
-
 containers = [{'id': i, 'cluster_port': 6000 + i} for i in range(5)]  # Criação dinâmica da lista de containers
 container_id = 0
 
@@ -27,14 +25,3 @@ def vote_and_write():
         print(f"Container {container_id} perdeu a votação.")
 
 vote_and_write()
-
-# Obtendo o timestamp atual
-i = 0
-while True:
-    timestamp = datetime.now().timestamp()
-    i+=1
-    print("",end="")
-    timestamp2 = datetime.now().timestamp()
-    if(timestamp2 == timestamp):
-        print(timestamp2 == timestamp)
-        print(f'{timestamp} == {timestamp2}');

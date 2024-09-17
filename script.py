@@ -3,13 +3,9 @@ import threading
 import os
 import time
 from Functions import *
-
-<<<<<<< Updated upstream
+import re
 from datetime import datetime
-n_elements=5
-# Variáveis de ambiente
-container_id = int(os.getenv('ID'))
-=======
+
 #um vetor de timestamps. Sempre que recebe uma nova mensagem, o TS é
 #adicionado no vetor. O vetor é ordenado novamente, e se envia um 
 #sinal para o menor escrever, e o menor envia um sinal para o prox
@@ -18,12 +14,9 @@ container_id = int(os.getenv('ID'))
 #Variáveis de ambiente
 container_port = int(os.getenv('PORT'))
 container_id = int(os.getenv('ID')) 
->>>>>>> Stashed changes
 cluster_port = int(os.getenv('CLUSTER_PORT'))
 shared_file = '/shared/output.txt'
-cabecalho = "cluster/id{"+ container_id +"}/"
-
-containers = create_containers(n_elements)
+containers = [{'id': i, 'cluster_port': 6000 + i} for i in range(5)]  # Criação dinâmica da lista de containers
 
 # Dicionário para armazenar timestamps recebidos
 received_timestamps = {container['id']: None for container in containers}
@@ -38,7 +31,7 @@ write_permission = False
 def server():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
         server_socket.bind(('0.0.0.0', cluster_port))
-        server_socket.listen(n_elements)
+        server_socket.listen()
         print(f"Container {container_id} ouvindo na porta {cluster_port}...")
         while True:
             cluster_element, _ = server_socket.accept()
@@ -48,22 +41,6 @@ def server():
 
 #Verifica se o servidor quer escrever
 def handle_request(cluster_element):
-<<<<<<< Updated upstream
-    global containers
-    data = cluster_element.recv(1024).decode()
-    c_id = extract_id(data)
-
-    if "OK" in data:
-        containers[c_id]['start'] = 'OK'
-    #cluster_element.send(str(client_timestamp).encode())
-    elif containers[container_id]['timestamp'] == -2:
-        containers[c_id]['timestamp'] = extract_timestamp(data)
-
-    cluster_element.close()
-
-# Função para enviar mensagem a outro container e receber resposta
-def send_message(container, message):
-=======
     global write_permission
     data = cluster_element.recv(1024).decode() #recebe mensagem do servidor (Request ou nada)
     #Servidor quer escrever (cliente pediu)
@@ -118,22 +95,15 @@ def initiate_vote():
 
         else:
             ##duvida em tirar esse eLSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            send_timestamp_to_all()  # Envia o timestamp para todos os servidores antes de iniciar a votação
             vote_and_write()
             print(f"Container {container_id} está iniciando uma votação para escrever.")
 
 # Função para conenctar o container no cluster, enviar uma mensagem
 # para o cluster saber que o container quer escrever.
 def receive_time_stamp(container):
->>>>>>> Stashed changes
     try:
         #criou um novo socket
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-<<<<<<< Updated upstream
-            sock.connect((f"container_{container['id']}", container['cluster_port']))
-            sock.send(message.encode())
-
-=======
             #conectou o container no cluster
             sock.connect((f"container_{container['id'] + 1}", container['cluster_port']))
             #enviou REQUEST para o cluster
@@ -142,15 +112,10 @@ def receive_time_stamp(container):
             #recebe o timestamp ou -1 se vazio
             return sock.recv(1024).decode()
         
->>>>>>> Stashed changes
     except ConnectionRefusedError:
         print(f"Falha ao conectar no container {container['id']}")
+        return None
 
-<<<<<<< Updated upstream
-# Função de comparação de timestamps
-def compare_by_timestamp(container_data):
-    return container_data[2]
-=======
 # Função para verificar se todos os servidores receberam todos os timestamps
 def check_all_timestamps_received():
     while True:
@@ -162,64 +127,12 @@ def check_all_timestamps_received():
         else:
             print("Esperando todos os timestamps serem recebidos...")
             time.sleep(1)  # Espera um pouco antes de verificar novamente
->>>>>>> Stashed changes
 
 
 #Função para votar e escrever
 def vote_and_write():
-<<<<<<< Updated upstream
-    global message_to_write
-    #"cluster/id{3}"
-    ok_message = cabecalho + "/OK"
-    send_release = True
-    
-    sorted_containers = sorted(containers, key=compare_by_timestamp)
-
-    if not sorted_containers:
-        print(f"Container {container_id} não tem containers interessados para comparar.")
-        return
-    
-    #Envia para os containers com timestamp menor que o meu
-    for con in sorted_containers:
-        #message = "cluster/id{"+ container_id +"}/timestamp{"+ client_timestamp +"}"
-        if con['timestamp'] < client_timestamp:
-            send_message(con, ok_message)
-    
-    while True:
-        if all_ok(containers):
-            if message_to_write != "":
-                with open(shared_file, 'a') as f:
-                    f.write(f"Container {container_id} escreveu no arquivo em {datetime.now()}\n")
-                    f.write(f"Mensagem: {message_to_write}\n")  # Adiciona a mensagem recebida
-                    break
-            else:
-                break
-        else:
-            time.sleep(1)
-
-    #Envia para os containers com timestamp maior que o meu
-    for con in sorted_containers:
-        if con['timestamp'] > client_timestamp:
-            send_message(con, ok_message)
-            send_release = False
-            
-
-    if send_release:
-        #Enviar RELEASE para os containers 
-        for con in sorted_containers:
-            send_message(con, "RELEASE")
-    #esperar receber release
-    message_to_write = ""  # Limpa a mensagem depois de escrever
-
-# Função que inicia o ciclo de votação periodicamente
-def initiate_vote():
-    while True:
-        if received_timestamps(containers):
-            vote_and_write()
-        else:
-            time.sleep(1)
-=======
     global message_to_write, message_timestamp, client_timestamp, write_permission
+    send_timestamp_to_all()  # Envia o timestamp para todos os servidores antes de iniciar a votação
 
     # Obtém os timestamps de todos os containers interessados, criando
     # Uma tupla interested_containers = [container, timestamp]
@@ -230,6 +143,13 @@ def initiate_vote():
         for container in containers 
     ]
 
+    #tira os containers que não estão interessados em escrita (timestamp -1)
+    interested_containers = [
+        (container, timestamp) 
+        for container, timestamp in interested_containers
+        if timestamp != -1
+    ]
+
     # Verificação se todos os servidores possuem todos os timestamps
     check_all_timestamps_received()
 
@@ -238,9 +158,13 @@ def initiate_vote():
    
     # Identifica o container com o menor timestamp
     min_container = min(interested_containers, key=lambda x: x[1])
-    
+
     if (container_id == min_container[0]['id']): write_permission = True
     # Verifica se este container é o primeiro a escrever ou se recebeu permissão para escrever
+
+    while (True): 
+        if write_permission == True : break #vai esperar sua vez.
+
     if write_permission:
         print(f"Container {container_id} está escrevendo no arquivo.")
         with open(shared_file, 'a') as f:
@@ -249,32 +173,12 @@ def initiate_vote():
         
         message_to_write = ""  # Limpa a mensagem depois de escrever
         write_permission = False  # Reseta a permissão após escrever
+        client_timestamp = -1
 
         #manda uma mensagem pro proximo container de menor timestamp além dele escrever no arquivo
         send_message_to_next(interested_containers, min_container)
     else:
         print(f"Container {container_id} perdeu a votação ou está aguardando permissão.")
-
-def send_ok_and_wait(min_container, containers):
-    response = "WAIT"  # Inicializa a resposta como "WAIT"
-    for container, _ in containers:
-        try:
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-                sock.connect((f"container_{container['id'] + 1}", container['cluster_port'] + 1))  # Porta adicional para comunicação de status
-                if container == min_container[0]:
-                    # Envia "OK" para o container com o menor timestamp
-                    sock.send("OK".encode())
-                    print(f"OK enviado para o container {container['id']}.")
-                    if container['id'] == container_id:
-                        response = "OK"  # Define a resposta como "OK" para o container atual
-                else:
-                    # Envia "WAIT" para os outros containers
-                    sock.send("WAIT".encode())
-                    print(f"WAIT enviado para o container {container['id']}.")
-        except ConnectionRefusedError:
-            print(f"Falha ao conectar no container {container['id']}")
-    return response
->>>>>>> Stashed changes
 
 def send_message_to_next(containers, min_container):
     # Ordena os containers por timestamp
@@ -317,16 +221,7 @@ def listen_client(client_socket):
         # Extrai a mensagem e o timestamp da string recebida
         if message != "" and message_to_write == "":
             message_to_write = extract_message(message)
-<<<<<<< Updated upstream
-            client_timestamp = extract_timestamp(message)
-            send_data(client_socket, "committed")  # Confirma que a mensagem foi armazenada
-            for con in containers:
-                send_message(con, "cluster/{"+ str(container_id) + "}/timestamp{"+ str(client_timestamp)) +"}"
-        else:
-            send_data(client_socket, "sleep")  # Informa que não pode processar a mensagem agora
-=======
             client_timestamp = extract_time_stamp(message)
->>>>>>> Stashed changes
 
             #mandando um comitted para o cliente ficar ciente.
             send_data(client_socket, "committed")
