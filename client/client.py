@@ -7,7 +7,7 @@ from Functions import *
 def main():
     host = '0.0.0.0' #Maquina local
     #192.168.0.102
-    host = '192.168.31.108'
+    #host = '192.168.31.108'
     
     port = int(os.getenv('PORT'))
     client_id = int(os.getenv('ID'))

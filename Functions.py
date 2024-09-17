@@ -4,6 +4,22 @@ import socket
 import os
 file_path = "/shared/output.txt"
 
+import socket
+
+def send_to_all_containers(containers, message):
+    for container in containers:
+        container_port = container['cluster_port']
+        try:
+            # Cria um socket TCP/IP
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                # Conecta no container na porta 'cluster_port'
+                s.connect(('0.0.0.0', container_port))
+                # Envia a mensagem
+                s.send(message.encode('utf-8'))
+                print(f"Mensagem enviada para o container {container['id']} na porta {container_port}")
+        except ConnectionRefusedError:
+            print(f"Refused {container['id']} na porta {container_port}")
+
 def create_containers(elements):
     #        [0]            [1]                      [2]            [3]
     return [{'id': i, 'cluster_port': 6000 + i, 'timestamp':-2, 'start': "no"} for i in range(elements)]
@@ -73,10 +89,10 @@ def received_timestamps(containers):
 #print(extract_timestamp("timestamp{13212}"))
 #print(extract_id("id{13212}"))
 
-containers = create_containers(5)
+#containers = create_containers(5)
 
 #for con in containers:
 #    con['timestamp'] = 3
 
 #containers[2]['timestamp'] = -2
-print(received_timestamps(containers))
+#print(received_timestamps(containers))
