@@ -4,42 +4,46 @@ import random
 from Functions import *
 
 def main():
-    host = '0.0.0.0' #Maquina local
-    #192.168.0.102
-    host = '192.168.31.108' 
-    
+    quer_escrever = 0
+    host = '0.0.0.0'
+    #host = '192.168.31.108'
     port = int(os.getenv('PORT'))
     client_id = int(os.getenv('ID'))
 
-    new_timestamp = False
+    commited = False
     
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect((host, port))  # Conectar ao servidor
     try:
         i = 0
         while True:
-            if not new_timestamp:
-                timestamp = get_current_timestamp()
-                new_timestamp = True
+            #Se quer_escrever = 0, o cliente nao quer escrever.
+            quer_escrever = random(0,5)
 
+            if not commited and quer_escrever != 0:
+                timestamp = get_current_timestamp()
+                commited = True
+
+            if quer_escrever == 0:
+                timestamp = -1
+                commited = True
+
+            #message = CLIENT 1 TIME 15 - MESSAGE 1
             message = "client "+ str(client_id)+ " time: "+ str(timestamp) + " - message: "+ str(i)
-            data = "client/id{"+ str(client_id) +"}/timestamp{"+ str(timestamp) + "}/message{"+ str(message) +"}"
 
             if i >= 50:
-                data = ""
-                
-            #envia a mensagem
-            client_socket.send(data.encode('utf-8'))
+                message = ""
 
-            #recebe uma instrução
+            client_socket.send(message.encode('utf-8'))
             cluster_command = receive_data(client_socket)
+
             print(cluster_command)
-            
             if cluster_command == "sleep":   
                 time.sleep(random.randint(1, 5)) 
+                
             elif cluster_command == "committed":
                 i+=1
-                new_timestamp = False
+                commited = False
 
 
     except OSError as e:

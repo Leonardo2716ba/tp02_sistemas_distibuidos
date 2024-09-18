@@ -1,0 +1,60 @@
+2------------ 1726626311.364954 -------------------
+{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'OK'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'no'}
+3------------ 1726626313.366793 -------------------
+{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'OK'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'no'}
+1------------ 1726626319.373918 -------------------
+{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'OK'}
+0------------ 1726626317.371973 -------------------
+{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'OK'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'OK'}
+4------------ 1726626315.368811 -------------------
+{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'OK'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'OK'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'OK'}
+2 =============== 1726626311.364954 =================
+{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'OK'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'OK'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'OK'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'OK'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'OK'}
+3 =============== 1726626313.366793 =================
+{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'OK'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'OK'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'OK'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'OK'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'OK'}
+4 =============== 1726626315.368811 =================
+{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'OK'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'OK'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'OK'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'OK'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'OK'}
+0 =============== 1726626317.371973 =================
+{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'OK'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'OK'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'OK'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'OK'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'OK'}
+1 =============== 1726626319.373918 =================
+{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'OK'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'OK'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'OK'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'OK'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'OK'}
