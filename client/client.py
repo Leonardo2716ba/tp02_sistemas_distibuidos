@@ -18,7 +18,7 @@ def main():
         i = 0
         while True:
             #Se quer_escrever = 0, o cliente nao quer escrever.
-            quer_escrever = random(0,5)
+            quer_escrever = random.randint(0,5)
 
             if not commited and quer_escrever != 0:
                 timestamp = get_current_timestamp()
