@@ -1,0 +1,10 @@
+Container 2 escreveu no arquivo em 2024-09-18 02:25:20.380740
+Mensagem: client 2 time: 1726626311.364954 - message: 0
+Container 3 escreveu no arquivo em 2024-09-18 02:25:21.381687
+Mensagem: client 3 time: 1726626313.366793 - message: 0
+Container 4 escreveu no arquivo em 2024-09-18 02:25:21.616594
+Mensagem: client 4 time: 1726626315.368811 - message: 0
+Container 0 escreveu no arquivo em 2024-09-18 02:25:22.617967
+Mensagem: client 0 time: 1726626317.371973 - message: 0
+Container 1 escreveu no arquivo em 2024-09-18 02:25:23.384529
+Mensagem: client 1 time: 1726626319.373918 - message: 0

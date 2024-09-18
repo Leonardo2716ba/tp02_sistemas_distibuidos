@@ -1,9 +1,9 @@
-from datetime import datetime
 import threading
 import socket
 import time
 import random
 from Functions import *
+from datetime import datetime
 
 def client_code(host, port):
     port = port + 5000
@@ -47,16 +47,13 @@ def client_code(host, port):
 
 
 host = '0.0.0.0'
-
-threading.Thread(target=client_code, args=(host,0)).start()
-time.sleep(0.2)
-threading.Thread(target=client_code, args=(host,1)).start()
-time.sleep(0.2)
-
 threading.Thread(target=client_code, args=(host,2)).start()
-time.sleep(0.2)
+time.sleep(2)
 
 threading.Thread(target=client_code, args=(host,3)).start()
-time.sleep(0.2)
-
+time.sleep(2)
 threading.Thread(target=client_code, args=(host,4)).start()
+time.sleep(2)
+threading.Thread(target=client_code, args=(host,0)).start()
+time.sleep(2)
+threading.Thread(target=client_code, args=(host,1)).start()
