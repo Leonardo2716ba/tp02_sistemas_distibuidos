@@ -37,18 +37,24 @@ def server():
 
             #enviar os TS para todos os servidores.
             envia_timestamps()
+            print(f'timestamps enviados')
+
 
             #Verificar se todos os containers receberam todos os timestamps
             verifica_timestamps()
+            print(f'timestamps verificados')
 
             #Ordena os TS e guarda apenas os que querem escrever.
             containers_interessados = ordena_timestamps()
+            print(f'timestamps ordenados')
 
             #Manda OK_Escrita
             envia_permissao_escrita(containers_interessados)
+            print(f'OK_ESCRITA enviados\n')
 
             #Aquele que recebe todos os OK, escreve no arquivo. Só escreve quando estiver os OK necessarios (sem race condition)
             if ok_escrita == (len(containers_interessados) - 1) : escreve_arquivo() 
+            print(f'escreveu')
 
             #reseta tudo
             reseta()
@@ -156,8 +162,10 @@ client_socket = accept_client(server_socket)
 
 #thread para escutar o cliente
 threading.Thread(target=listen_client, args=(client_socket,)).start()
+print(f'Thread listen client rodando')
 
 #thread para se comunicar com os outros servidores
 threading.Thread(target=server, daemon=True).start()
+print(f'Thread server rodando')
 
 #thread para iniciar
