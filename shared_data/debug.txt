@@ -1,60 +1,300 @@
-2------------ 1726626311.364954 -------------------
-{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'OK'}
-{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'no'}
-{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'no'}
-{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'no'}
-{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'no'}
-3------------ 1726626313.366793 -------------------
-{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'no'}
-{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'OK'}
-{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'no'}
-{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'no'}
-{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'no'}
-1------------ 1726626319.373918 -------------------
-{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'no'}
-{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'no'}
-{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'no'}
-{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'no'}
-{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'OK'}
-0------------ 1726626317.371973 -------------------
-{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'no'}
-{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'no'}
-{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'no'}
-{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'OK'}
-{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'OK'}
-4------------ 1726626315.368811 -------------------
-{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'no'}
-{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'no'}
-{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'OK'}
-{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'OK'}
-{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'OK'}
-2 =============== 1726626311.364954 =================
-{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'OK'}
-{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'OK'}
-{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'OK'}
-{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'OK'}
-{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'OK'}
-3 =============== 1726626313.366793 =================
-{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'OK'}
-{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'OK'}
-{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'OK'}
-{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'OK'}
-{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'OK'}
-4 =============== 1726626315.368811 =================
-{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'OK'}
-{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'OK'}
-{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'OK'}
-{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'OK'}
-{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'OK'}
-0 =============== 1726626317.371973 =================
-{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'OK'}
-{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'OK'}
-{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'OK'}
-{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'OK'}
-{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'OK'}
-1 =============== 1726626319.373918 =================
-{'id': 2, 'cluster_port': 6002, 'timestamp': 1726626311.364954, 'start': 'OK'}
-{'id': 3, 'cluster_port': 6003, 'timestamp': 1726626313.366793, 'start': 'OK'}
-{'id': 4, 'cluster_port': 6004, 'timestamp': 1726626315.368811, 'start': 'OK'}
-{'id': 0, 'cluster_port': 6000, 'timestamp': 1726626317.371973, 'start': 'OK'}
-{'id': 1, 'cluster_port': 6001, 'timestamp': 1726626319.373918, 'start': 'OK'}
+0 =============== 1462.0 =================
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1462.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 1555.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1623.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 4385.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 9643.0, 'start': 'OK', 'rele': 'no'}
+2 =============== 1555.0 =================
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1462.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 1555.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1623.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 4385.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 9643.0, 'start': 'OK', 'rele': 'no'}
+1 =============== 1623.0 =================
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1462.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 1555.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1623.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 4385.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 9643.0, 'start': 'OK', 'rele': 'no'}
+4 =============== 4385.0 =================
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1462.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 1555.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1623.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 4385.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 9643.0, 'start': 'OK', 'rele': 'no'}
+3 =============== 9643.0 =================
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1462.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 1555.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1623.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 4385.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 9643.0, 'start': 'OK', 'rele': 'YES'}
+2 =============== 291.0 =================
+{'id': 2, 'cluster_port': 6002, 'timestamp': 291.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1589.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 3912.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 4736.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6919.0, 'start': 'OK', 'rele': 'no'}
+0 =============== 1589.0 =================
+{'id': 2, 'cluster_port': 6002, 'timestamp': 291.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1589.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 3912.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 4736.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6919.0, 'start': 'OK', 'rele': 'no'}
+1 =============== 3912.0 =================
+{'id': 2, 'cluster_port': 6002, 'timestamp': 291.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1589.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 3912.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 4736.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6919.0, 'start': 'OK', 'rele': 'no'}
+3 =============== 4736.0 =================
+{'id': 2, 'cluster_port': 6002, 'timestamp': 291.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1589.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 3912.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 4736.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6919.0, 'start': 'OK', 'rele': 'no'}
+4 =============== 6919.0 =================
+{'id': 2, 'cluster_port': 6002, 'timestamp': 291.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1589.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 3912.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 4736.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6919.0, 'start': 'OK', 'rele': 'YES'}
+0 =============== 2589.0 =================
+{'id': 0, 'cluster_port': 6000, 'timestamp': 2589.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 3672.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6832.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 7848.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 9197.0, 'start': 'OK', 'rele': 'no'}
+1 =============== 3672.0 =================
+{'id': 0, 'cluster_port': 6000, 'timestamp': 2589.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 3672.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6832.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 7848.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 9197.0, 'start': 'OK', 'rele': 'no'}
+4 =============== 6832.0 =================
+{'id': 0, 'cluster_port': 6000, 'timestamp': 2589.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 3672.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6832.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 7848.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 9197.0, 'start': 'OK', 'rele': 'no'}
+2 =============== 7848.0 =================
+{'id': 0, 'cluster_port': 6000, 'timestamp': 2589.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 3672.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6832.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 7848.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 9197.0, 'start': 'OK', 'rele': 'no'}
+3 =============== 9197.0 =================
+{'id': 0, 'cluster_port': 6000, 'timestamp': 2589.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 3672.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6832.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 7848.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 9197.0, 'start': 'OK', 'rele': 'YES'}
+4 =============== 1029.0 =================
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1029.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 2139.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 2674.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 5968.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 7803.0, 'start': 'OK', 'rele': 'no'}
+2 =============== 2139.0 =================
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1029.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 2139.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 2674.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 5968.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 7803.0, 'start': 'OK', 'rele': 'no'}
+3 =============== 2674.0 =================
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1029.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 2139.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 2674.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 5968.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 7803.0, 'start': 'OK', 'rele': 'no'}
+0 =============== 5968.0 =================
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1029.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 2139.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 2674.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 5968.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 7803.0, 'start': 'OK', 'rele': 'no'}
+1 =============== 7803.0 =================
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1029.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 2139.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 2674.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 5968.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 7803.0, 'start': 'OK', 'rele': 'YES'}
+4 =============== 1637.0 =================
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1637.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 4409.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 4770.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 9141.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 9539.0, 'start': 'OK', 'rele': 'no'}
+3 =============== 4409.0 =================
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1637.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 4409.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 4770.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 9141.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 9539.0, 'start': 'OK', 'rele': 'no'}
+2 =============== 4770.0 =================
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1637.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 4409.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 4770.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 9141.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 9539.0, 'start': 'OK', 'rele': 'no'}
+0 =============== 9141.0 =================
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1637.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 4409.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 4770.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 9141.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 9539.0, 'start': 'OK', 'rele': 'no'}
+1 =============== 9539.0 =================
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1637.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 4409.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 4770.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 9141.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 9539.0, 'start': 'OK', 'rele': 'YES'}
+1 =============== 3266.0 =================
+{'id': 1, 'cluster_port': 6001, 'timestamp': 3266.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 4779.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6488.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 6887.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 6971.0, 'start': 'OK', 'rele': 'no'}
+2 =============== 4779.0 =================
+{'id': 1, 'cluster_port': 6001, 'timestamp': 3266.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 4779.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6488.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 6887.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 6971.0, 'start': 'OK', 'rele': 'no'}
+4 =============== 6488.0 =================
+{'id': 1, 'cluster_port': 6001, 'timestamp': 3266.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 4779.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6488.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 6887.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 6971.0, 'start': 'OK', 'rele': 'no'}
+3 =============== 6887.0 =================
+{'id': 1, 'cluster_port': 6001, 'timestamp': 3266.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 4779.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6488.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 6887.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 6971.0, 'start': 'OK', 'rele': 'no'}
+0 =============== 6971.0 =================
+{'id': 1, 'cluster_port': 6001, 'timestamp': 3266.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 4779.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6488.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 6887.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 6971.0, 'start': 'OK', 'rele': 'YES'}
+3 =============== 2667.0 =================
+{'id': 3, 'cluster_port': 6003, 'timestamp': 2667.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 2740.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 6095.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6192.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 8254.0, 'start': 'OK', 'rele': 'no'}
+0 =============== 2740.0 =================
+{'id': 3, 'cluster_port': 6003, 'timestamp': 2667.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 2740.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 6095.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6192.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 8254.0, 'start': 'OK', 'rele': 'no'}
+2 =============== 6095.0 =================
+{'id': 3, 'cluster_port': 6003, 'timestamp': 2667.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 2740.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 6095.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6192.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 8254.0, 'start': 'OK', 'rele': 'no'}
+4 =============== 6192.0 =================
+{'id': 3, 'cluster_port': 6003, 'timestamp': 2667.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 2740.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 6095.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6192.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 8254.0, 'start': 'OK', 'rele': 'no'}
+1 =============== 8254.0 =================
+{'id': 3, 'cluster_port': 6003, 'timestamp': 2667.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 2740.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 6095.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6192.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 8254.0, 'start': 'OK', 'rele': 'YES'}
+3 =============== 68.0 =================
+{'id': 3, 'cluster_port': 6003, 'timestamp': 68.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1905.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 2116.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 5524.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 8056.0, 'start': 'OK', 'rele': 'no'}
+0 =============== 1905.0 =================
+{'id': 3, 'cluster_port': 6003, 'timestamp': 68.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1905.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 2116.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 5524.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 8056.0, 'start': 'OK', 'rele': 'no'}
+4 =============== 2116.0 =================
+{'id': 3, 'cluster_port': 6003, 'timestamp': 68.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1905.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 2116.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 5524.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 8056.0, 'start': 'OK', 'rele': 'no'}
+1 =============== 5524.0 =================
+{'id': 3, 'cluster_port': 6003, 'timestamp': 68.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1905.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 2116.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 5524.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 8056.0, 'start': 'OK', 'rele': 'no'}
+2 =============== 8056.0 =================
+{'id': 3, 'cluster_port': 6003, 'timestamp': 68.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1905.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 2116.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 5524.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 8056.0, 'start': 'OK', 'rele': 'YES'}
+4 =============== 1010.0 =================
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1010.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1358.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 4732.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 5401.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 8738.0, 'start': 'OK', 'rele': 'no'}
+1 =============== 1358.0 =================
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1010.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1358.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 4732.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 5401.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 8738.0, 'start': 'OK', 'rele': 'no'}
+3 =============== 4732.0 =================
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1010.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1358.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 4732.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 5401.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 8738.0, 'start': 'OK', 'rele': 'no'}
+0 =============== 5401.0 =================
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1010.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1358.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 4732.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 5401.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 8738.0, 'start': 'OK', 'rele': 'no'}
+2 =============== 8738.0 =================
+{'id': 4, 'cluster_port': 6004, 'timestamp': 1010.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 1358.0, 'start': 'OK', 'rele': 'no'}
+{'id': 3, 'cluster_port': 6003, 'timestamp': 4732.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 5401.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 8738.0, 'start': 'OK', 'rele': 'YES'}
+3 =============== 1348.0 =================
+{'id': 3, 'cluster_port': 6003, 'timestamp': 1348.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1973.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 4488.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6085.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 8301.0, 'start': 'OK', 'rele': 'no'}
+0 =============== 1973.0 =================
+{'id': 3, 'cluster_port': 6003, 'timestamp': 1348.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1973.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 4488.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6085.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 8301.0, 'start': 'OK', 'rele': 'no'}
+1 =============== 4488.0 =================
+{'id': 3, 'cluster_port': 6003, 'timestamp': 1348.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1973.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 4488.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6085.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 8301.0, 'start': 'OK', 'rele': 'no'}
+4 =============== 6085.0 =================
+{'id': 3, 'cluster_port': 6003, 'timestamp': 1348.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1973.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 4488.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6085.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 8301.0, 'start': 'OK', 'rele': 'no'}
+2 =============== 8301.0 =================
+{'id': 3, 'cluster_port': 6003, 'timestamp': 1348.0, 'start': 'OK', 'rele': 'no'}
+{'id': 0, 'cluster_port': 6000, 'timestamp': 1973.0, 'start': 'OK', 'rele': 'no'}
+{'id': 1, 'cluster_port': 6001, 'timestamp': 4488.0, 'start': 'OK', 'rele': 'no'}
+{'id': 4, 'cluster_port': 6004, 'timestamp': 6085.0, 'start': 'OK', 'rele': 'no'}
+{'id': 2, 'cluster_port': 6002, 'timestamp': 8301.0, 'start': 'OK', 'rele': 'YES'}

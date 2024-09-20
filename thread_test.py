@@ -17,7 +17,7 @@ def client_code(host, port):
         i = 0
         while True:
             if not commited:
-                timestamp = datetime.now().timestamp()
+                timestamp = random.randint(1, 10000)
                 commited = True
 
             message = "client "+ str(client_id)+ " time: "+ str(timestamp) + " - message: "+ str(i)
@@ -29,11 +29,11 @@ def client_code(host, port):
                 i +=1
             client_socket.send(data.encode('utf-8'))
             cluster_command = receive_data(client_socket)
-            print(cluster_command)
             if cluster_command == "sleep":   
                 time.sleep(random.randint(1, 5))  # Pausa de 5 segundos para dar tempo ao servidor processar
 
             elif cluster_command == "committed":
+                print(f"{port} - {cluster_command}")
                 i+=1
                 commited = False                
 
@@ -48,12 +48,7 @@ def client_code(host, port):
 
 host = '0.0.0.0'
 threading.Thread(target=client_code, args=(host,2)).start()
-time.sleep(2)
-
 threading.Thread(target=client_code, args=(host,3)).start()
-time.sleep(2)
 threading.Thread(target=client_code, args=(host,4)).start()
-time.sleep(2)
 threading.Thread(target=client_code, args=(host,0)).start()
-time.sleep(2)
 threading.Thread(target=client_code, args=(host,1)).start()

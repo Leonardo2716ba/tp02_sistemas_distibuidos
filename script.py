@@ -24,18 +24,6 @@ message_timestamp = float(9**10)
 client_timestamp = -2
 sair = False
 
-def send_based_on_comparison(containers, client_timestamp, ok_message, comparison_type):
-    for con in containers:
-        if comparison_type == '<' and con['timestamp'] < client_timestamp:
-            while send_message(con, ok_message) != "received":
-                time.sleep(1)
-        elif comparison_type == '>' and con['timestamp'] > client_timestamp:
-            while send_message(con, ok_message) != "received":
-                time.sleep(1)
-        else:
-            print(f"Tipo de comparação inválido: {comparison_type}. Use '<' ou '>'.")
-            break
-
 # Função do servidor para lidar com requisições de outros containers
 def server():
     global containers
@@ -70,6 +58,7 @@ def handle_request(conn):
         if "RELEASE" in data:
             sair = True
             conn.send("received".encode())
+            containers[extract_id(data)]['rele'] = "YES"
             #containers = create_containers(5)
     else:
         conn.send("message not processed".encode())
@@ -89,12 +78,31 @@ def send_message(container, message):
 
 # Função que inicia o ciclo de votação periodicamente
 def initiate_vote():
-    global containers
+    global containers, message_to_write, client_timestamp
     while True:
         for con in containers:
-                con['timestamp'] = float(send_message(con, 'TIMESTAMP'))            
+            con['timestamp'] = float(send_message(con, 'TIMESTAMP'))
+        while received_timestamps(containers):
+            vote_and_write()
+            while not one_release(containers):
+                time.sleep(0.2)
+            client_timestamp = -2
+            message_to_write = ""
+            containers = create_containers(5)
+            break
+
+# Função que inicia o ciclo de votação periodicamente
+def _vote():
+    global containers, message_to_write
+    while True:
+        containers = create_containers(5)
+        for con in containers:
+            con['timestamp'] = float(send_message(con, 'TIMESTAMP'))            
         if received_timestamps(containers):
             vote_and_write()
+            while not one_release(containers):
+                time.sleep(0.2)
+            message_to_write = ""
             break
 
 # Função para ouvir as mensagens dos clientes e processar
@@ -132,25 +140,20 @@ def vote_and_write():
         if con['timestamp'] < client_timestamp:
             while send_message(con, ok_message) != "received":
                 time.sleep(1)
-
-
-    sorted_containers = sorted(containers, key=compare_by_timestamp)
-    with open("/shared/debug.txt", 'a') as f:
-        f.write(f"{container_id}------------ {client_timestamp} -------------------\n")
-        for c in sorted_containers:
-            f.write(f"{c}\n")
+        if con['timestamp'] > client_timestamp:
+            send_release = False
 
     while True:
         if received_oks(containers):
             if message_to_write != "":
                 with open(shared_file, 'a') as f:
-                    f.write(f"Container {container_id} escreveu no arquivo em {datetime.now()}\n")
+                    f.write(f"Container {container_id} \n")
                     f.write(f"Mensagem: {message_to_write}\n")  # Adiciona a mensagem recebida
                     break
             else:
                 break
         else:
-           time.sleep(1)
+           time.sleep(0.2)
 
     for con in containers:
         if con['timestamp'] > client_timestamp:
@@ -158,29 +161,28 @@ def vote_and_write():
                 if send_message(con, ok_message) == "received":
                     break
 
+    if send_release:
+        for con in containers:
+            send_message(con, f"{cabecalho} RELEASE")
+        with open(shared_file, 'a') as f:
+            f.write(f"########################################################\n")
+
     sorted_containers = sorted(containers, key=compare_by_timestamp)
     with open("/shared/debug.txt", 'a') as f:
         f.write(f"{container_id} =============== {client_timestamp} =================\n")
         for c in sorted_containers:
             f.write(f"{c}\n")
 
-    if send_release:
-        #Enviar RELEASE para os containers 
-        for con in containers:
-            send_message(con, "RELEASE")
-    else:
-        while True:
-            if sair:
-                break
-
-    message_to_write = ""  # Limpa a mensagem depois de escrever
-    sair = False
 
 print(cabecalho)
 print("OK" in ok_message)
 print(extract_id(ok_message))
 
-
+if container_id == 1:
+    with open("/shared/debug.txt", 'w') as f:
+        f.write(f"")  
+    with open(shared_file, 'w') as f:
+        f.write(f"")  
 
 #Cria servidor para escutar o cliente
 server_socket = create_server('0.0.0.0', int(os.getenv('PORT')))

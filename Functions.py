@@ -8,7 +8,7 @@ file_path = "/shared/output.txt"
 
 
 def create_containers(elements):
-    return [{'id': i, 'cluster_port': 6000 + i, 'timestamp':-2, 'start': 'no'} for i in range(elements)]
+    return [{'id': i, 'cluster_port': 6000 + i, 'timestamp':-2, 'start': 'no', 'rele': 'no'} for i in range(elements)]
 
 def receive_data(client):
     return client.recv(1024).decode('utf-8')
@@ -58,6 +58,12 @@ def received_timestamps(containers):
         if con['timestamp'] == -2:
             return False
     return True 
+
+def one_release(containers):
+    for con in containers:
+        if con['rele'] == "YES":
+            return True
+    return False 
 
 def received_oks(containers):
     for con in containers:
