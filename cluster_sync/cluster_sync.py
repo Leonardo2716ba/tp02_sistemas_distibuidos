@@ -68,7 +68,7 @@ def handle_request(conn):
 def send_message(container, message):
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-            sock.connect((f"container_{container['id'] + 1}", container['cluster_port']))
+            sock.connect((f"cluster_sync_{container['id'] + 1}", container['cluster_port']))
             sock.send(message.encode())
             return sock.recv(1024).decode()
     except ConnectionRefusedError:
