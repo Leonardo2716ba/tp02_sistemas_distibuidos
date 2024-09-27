@@ -1,12 +1,14 @@
 import time
 import re
 import socket
+import threading
+import random
 import os
 file_path = "/shared/output.txt"
 
+
 def create_containers(elements):
-    #        [0]            [1]                      [2]            [3]
-    return [{'id': i, 'cluster_port': 6000 + i, 'timestamp':-2, 'start': "no"} for i in range(elements)]
+    return [{'id': i, 'cluster_port': 6000 + i, 'timestamp':-2, 'start': 'no', 'rele': 'no'} for i in range(elements)]
 
 def receive_data(client):
     return client.recv(1024).decode('utf-8')
@@ -19,7 +21,7 @@ def send_data(client_socket, message):
             print("Tentativa de enviar dados em um socket fechado.")
     except ConnectionRefusedError:
         print(f"Falha ao conectar no container {client_socket['id']}")
-        return "-1"  # Retorna -1 para indicar falha na conexão
+        return -2  # Retorna -1 para indicar falha na conexão
     except OSError as e:
         print(f"Erro ao enviar dados: {e}")    
     
@@ -31,7 +33,7 @@ def extract_message(string):
 
 def extract_id(string):
     # Ajusta a expressão regular para corresponder ao formato correto
-    match = re.search(r"id\{(\d+)\}", string)
+    match = re.search(r"/id\{(\d+)\}", string)
 
     return int(match.group(1)) if match else -1
 
@@ -51,32 +53,31 @@ def accept_client(server_socket):
     print(f"Conexão estabelecida com {addr}")
     return client_socket
 
-# Função de comparação de timestamps
-def compare_by_timestamp(container_data):
-    return container_data[1]
-
-def all_ok(containers):
-    i = 0
-    for con in containers:
-        if con['start'] == "OK":
-            i += 1
-    return i == (len(containers) - 1)
-
 def received_timestamps(containers):
-    i = 0
     for con in containers:
-        if con['timestamp'] != -2:
-            i += 1
-    return i == len(containers)
+        if con['timestamp'] == -2:
+            return False
+    return True 
 
-#print(create_containers())
-#print(extract_timestamp("timestamp{13212}"))
-#print(extract_id("id{13212}"))
+def one_release(containers):
+    for con in containers:
+        if con['rele'] == "YES":
+            return True
+    return False 
 
-containers = create_containers(5)
+def received_oks(containers):
+    for con in containers:
+        if con['start'] != 'OK':
+            return False
+    return True         
+# Função de comparação de timestamps
+def compare_by_timestamp(container):
+    return container['timestamp']
 
-#for con in containers:
-#    con['timestamp'] = 3
+def beautifull_print(containers):
+    for con in containers:
+        print(con)
 
-#containers[2]['timestamp'] = -2
-print(received_timestamps(containers))
+
+
+#--------------------- TEST AREA

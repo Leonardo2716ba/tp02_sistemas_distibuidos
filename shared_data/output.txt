@@ -1,0 +1,110 @@
+Container 0 
+Mensagem: client 0 time: 1462 - message: 0
+Container 2 
+Mensagem: client 2 time: 1555 - message: 0
+Container 1 
+Mensagem: client 1 time: 1623 - message: 0
+Container 4 
+Mensagem: client 4 time: 4385 - message: 0
+Container 3 
+Mensagem: client 3 time: 9643 - message: 0
+########################################################
+Container 2 
+Mensagem: client 2 time: 291 - message: 1
+Container 0 
+Mensagem: client 0 time: 1589 - message: 1
+Container 1 
+Mensagem: client 1 time: 3912 - message: 1
+Container 3 
+Mensagem: client 3 time: 4736 - message: 1
+Container 4 
+Mensagem: client 4 time: 6919 - message: 1
+########################################################
+Container 0 
+Mensagem: client 0 time: 2589 - message: 2
+Container 1 
+Mensagem: client 1 time: 3672 - message: 2
+Container 4 
+Mensagem: client 4 time: 6832 - message: 2
+Container 2 
+Mensagem: client 2 time: 7848 - message: 2
+Container 3 
+Mensagem: client 3 time: 9197 - message: 2
+########################################################
+Container 4 
+Mensagem: client 4 time: 1029 - message: 3
+Container 2 
+Mensagem: client 2 time: 2139 - message: 3
+Container 3 
+Mensagem: client 3 time: 2674 - message: 3
+Container 0 
+Mensagem: client 0 time: 5968 - message: 3
+Container 1 
+Mensagem: client 1 time: 7803 - message: 3
+########################################################
+Container 4 
+Mensagem: client 4 time: 1637 - message: 4
+Container 3 
+Mensagem: client 3 time: 4409 - message: 4
+Container 2 
+Mensagem: client 2 time: 4770 - message: 4
+Container 0 
+Mensagem: client 0 time: 9141 - message: 4
+Container 1 
+Mensagem: client 1 time: 9539 - message: 4
+########################################################
+Container 1 
+Mensagem: client 1 time: 3266 - message: 5
+Container 2 
+Mensagem: client 2 time: 4779 - message: 5
+Container 4 
+Mensagem: client 4 time: 6488 - message: 5
+Container 3 
+Mensagem: client 3 time: 6887 - message: 5
+Container 0 
+Mensagem: client 0 time: 6971 - message: 5
+########################################################
+Container 3 
+Mensagem: client 3 time: 2667 - message: 6
+Container 0 
+Mensagem: client 0 time: 2740 - message: 6
+Container 2 
+Mensagem: client 2 time: 6095 - message: 6
+Container 4 
+Mensagem: client 4 time: 6192 - message: 6
+Container 1 
+Mensagem: client 1 time: 8254 - message: 6
+########################################################
+Container 3 
+Mensagem: client 3 time: 68 - message: 7
+Container 0 
+Mensagem: client 0 time: 1905 - message: 7
+Container 4 
+Mensagem: client 4 time: 2116 - message: 7
+Container 1 
+Mensagem: client 1 time: 5524 - message: 7
+Container 2 
+Mensagem: client 2 time: 8056 - message: 7
+########################################################
+Container 4 
+Mensagem: client 4 time: 1010 - message: 8
+Container 1 
+Mensagem: client 1 time: 1358 - message: 8
+Container 3 
+Mensagem: client 3 time: 4732 - message: 8
+Container 0 
+Mensagem: client 0 time: 5401 - message: 8
+Container 2 
+Mensagem: client 2 time: 8738 - message: 8
+########################################################
+Container 3 
+Mensagem: client 3 time: 1348 - message: 9
+Container 0 
+Mensagem: client 0 time: 1973 - message: 9
+Container 1 
+Mensagem: client 1 time: 4488 - message: 9
+Container 4 
+Mensagem: client 4 time: 6085 - message: 9
+Container 2 
+Mensagem: client 2 time: 8301 - message: 9
+########################################################
