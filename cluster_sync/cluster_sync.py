@@ -2,10 +2,10 @@ import socket
 import threading
 import os
 import time
-from Functions import *
-import re
-from datetime import datetime
-reps = 1
+from Functions import (create_containers, extract_id, one_release, received_timestamps,extract_id,
+                       extract_message, extract_timestamp, send_data, received_oks, create_server,
+                       compare_by_timestamp, accept_client)
+
 # Variáveis de ambiente
 container_id = int(os.getenv('ID'))
 cluster_port = int(os.getenv('CLUSTER_PORT'))
@@ -14,13 +14,10 @@ shared_file = '/shared/output.txt'
 cabecalho = "cluster/id{"+str(container_id)+"}"
 ok_message = cabecalho + "/OK"
 containers = create_containers(5)
-ok = 0
-# Variável global de lock
-request_lock = threading.Lock()
+
 
 # Variáveis globais
 message_to_write = ""  # Mensagem do cliente a ser escrita no arquivo
-message_timestamp = float(9**10)
 client_timestamp = -2
 sair = False
 
@@ -59,7 +56,6 @@ def handle_request(conn):
             sair = True
             conn.send("received".encode())
             containers[extract_id(data)]['rele'] = "YES"
-            #containers = create_containers(5)
     else:
         conn.send("message not processed".encode())
 
@@ -68,7 +64,7 @@ def handle_request(conn):
 def send_message(container, message):
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-            sock.connect((f"container_{container['id'] + 1}", container['cluster_port']))
+            sock.connect((f"cluster_sync_{container['id'] + 1}", container['cluster_port']))
             sock.send(message.encode())
             return sock.recv(1024).decode()
     except ConnectionRefusedError:
@@ -174,15 +170,10 @@ def vote_and_write():
             f.write(f"{c}\n")
 
 
-print(cabecalho)
-print("OK" in ok_message)
-print(extract_id(ok_message))
-
-if container_id == 1:
-    with open("/shared/debug.txt", 'w') as f:
-        f.write(f"")  
+if container_id == 0:
     with open(shared_file, 'w') as f:
-        f.write(f"")  
+        f.write("")
+
 
 #Cria servidor para escutar o cliente
 server_socket = create_server('0.0.0.0', int(os.getenv('PORT')))

@@ -1,38 +1,41 @@
+import threading
 import socket
 import time
 import random
 from Functions import *
+from datetime import datetime
 
-def main():
-    host = '0.0.0.0'
-    #host = '192.168.31.108'
-    port = int(os.getenv('PORT'))
-    client_id = int(os.getenv('ID'))
-    timestamp = 999999999
-
+def client_code(host, port):
+    port = port + 5000
     commited = False
-    host = f"cluster_sync_{client_id + 1}"
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect((host, port))  # Conectar ao servidor
+    timestamp = 999999999
+    client_id = port - 5000
+    lim = 10
     try:
         i = 0
         while True:
             if not commited:
-                timestamp = random.randint(100000, 999999)
+                timestamp = random.randint(1, 10000)
                 commited = True
 
             message = "client "+ str(client_id)+ " time: "+ str(timestamp) + " - message: "+ str(i)
             data = "client/id{"+ str(client_id) +"}/timestamp{"+ str(timestamp) + "}/message{"+ str(message) +"}"
-            if i >= 50:
+            if i >= lim:
                 data = ""
+            if i == lim:
+                print(f'Client {client_id} - Encerrou')
+                i +=1
             client_socket.send(data.encode('utf-8'))
             cluster_command = receive_data(client_socket)
             if cluster_command == "sleep":   
-                print(cluster_command)
-                time.sleep(random.randint(1, 5)) 
+                time.sleep(random.randint(1, 5))  # Pausa de 5 segundos para dar tempo ao servidor processar
+
             elif cluster_command == "committed":
+                print(f"{port} - {cluster_command}")
                 i+=1
-                commited = False
+                commited = False                
 
 
     except OSError as e:
@@ -42,5 +45,10 @@ def main():
     finally:
         client_socket.close()  # Fechar o socket do cliente
 
-if __name__ == "__main__":  
-    main()
+
+host = '0.0.0.0'
+threading.Thread(target=client_code, args=(host,2)).start()
+threading.Thread(target=client_code, args=(host,3)).start()
+threading.Thread(target=client_code, args=(host,4)).start()
+threading.Thread(target=client_code, args=(host,0)).start()
+threading.Thread(target=client_code, args=(host,1)).start()
