@@ -10,6 +10,10 @@ file_path = "/shared/output.txt"
 def create_containers(elements):
     return [{'id': i, 'cluster_port': 6000 + i, 'timestamp':-2, 'start': 'no', 'rele': 'no'} for i in range(elements)]
 
+def create_store_elements(elements):
+    return [{'id': i, 'cluster_port': 7000 + i, 'timestamp':-2, 'permission': 'no'} for i in range(elements)]
+
+
 def receive_data(client):
     return client.recv(1024).decode('utf-8')
 
