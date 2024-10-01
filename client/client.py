@@ -20,8 +20,7 @@ def main():
             if not commited:
                 timestamp = random.randint(100000, 999999)
                 commited = True
-
-            message = "client "+ str(client_id)+ " time: "+ str(timestamp) + " - message: "+ str(i)
+            message = f"client[{client_id}] - M[{i}]"
             data = "client/id{"+ str(client_id) +"}/timestamp{"+ str(timestamp) + "}/message{"+ str(message) +"}"
             if i >= 50:
                 data = ""

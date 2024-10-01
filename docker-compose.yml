@@ -1,174 +1,176 @@
 version: '3.8'
 
 services:
-  cluster_sync_1:
-    environment:
-      - ID=0
-      - PORT=5000
-      - CLUSTER_PORT=6000
-    ports:
-      - "5000:5000"
-      - "6000:6000"
-    build:    
-      context: .
-      dockerfile: cluster_sync/Dockerfile
-    volumes:
-      - ./shared_data:/shared
+#   cluster_sync_1:
+#     environment:
+#       - ID=0
+#       - PORT=5000
+#       - CLUSTER_PORT=6000
+#     ports:
+#       - "5000:5000"
+#       - "6000:6000"
+#     build:    
+#       context: .
+#       dockerfile: cluster_sync/Dockerfile
+#     volumes:
+#       - ./shared_data:/shared
 
-  cluster_sync_2:
-    environment:
-      - ID=1
-      - PORT=5001
-      - CLUSTER_PORT=6001
-    ports:
-      - "5001:5001"
-      - "6001:6001"
-    build:    
-      context: .
-      dockerfile: cluster_sync/Dockerfile
-    volumes:
-      - ./shared_data:/shared
+#   cluster_sync_2:
+#     environment:
+#       - ID=1
+#       - PORT=5001
+#       - CLUSTER_PORT=6001
+#     ports:
+#       - "5001:5001"
+#       - "6001:6001"
+#     build:    
+#       context: .
+#       dockerfile: cluster_sync/Dockerfile
+#     volumes:
+#       - ./shared_data:/shared
 
-  cluster_sync_3:
-    environment:
-      - ID=2
-      - PORT=5002
-      - CLUSTER_PORT=6002
-    ports:
-      - "5002:5002"
-      - "6002:6002"
-    build:    
-      context: .
-      dockerfile: cluster_sync/Dockerfile
-    volumes:
-      - ./shared_data:/shared
+#   cluster_sync_3:
+#     environment:
+#       - ID=2
+#       - PORT=5002
+#       - CLUSTER_PORT=6002
+#     ports:
+#       - "5002:5002"
+#       - "6002:6002"
+#     build:    
+#       context: .
+#       dockerfile: cluster_sync/Dockerfile
+#     volumes:
+#       - ./shared_data:/shared
 
-  cluster_sync_4:
-    environment:
-      - ID=3
-      - PORT=5003
-      - CLUSTER_PORT=6003
-    ports:
-      - "5003:5003"
-      - "6003:6003"
-    build:    
-      context: .
-      dockerfile: cluster_sync/Dockerfile
-    volumes:
-      - ./shared_data:/shared
+#   cluster_sync_4:
+#     environment:
+#       - ID=3
+#       - PORT=5003
+#       - CLUSTER_PORT=6003
+#     ports:
+#       - "5003:5003"
+#       - "6003:6003"
+#     build:    
+#       context: .
+#       dockerfile: cluster_sync/Dockerfile
+#     volumes:
+#       - ./shared_data:/shared
 
-  cluster_sync_5:
-    environment:
-      - ID=4
-      - PORT=5004
-      - CLUSTER_PORT=6004
-    ports:
-      - "5004:5004"
-      - "6004:6004"
-    build:    
-      context: .
-      dockerfile: cluster_sync/Dockerfile
-    volumes:
-      - ./shared_data:/shared
+#   cluster_sync_5:
+#     environment:
+#       - ID=4
+#       - PORT=5004
+#       - CLUSTER_PORT=6004
+#     ports:
+#       - "5004:5004"
+#       - "6004:6004"
+#     build:    
+#       context: .
+#       dockerfile: cluster_sync/Dockerfile
+#     volumes:
+#       - ./shared_data:/shared
 
-# -------------------------- SYNC CLIENTS --------------------------
+# # -------------------------- SYNC CLIENTS --------------------------
 
-  client_1:
-    environment:
-      - ID=0
-      - PORT=5000
-    build:    
-      context: .
-      dockerfile: client/Dockerfile
-    depends_on:
-      cluster_sync_1:
-        condition: service_started
+#   client_1:
+#     environment:
+#       - ID=0
+#       - PORT=5000
+#     build:    
+#       context: .
+#       dockerfile: client/Dockerfile
+#     depends_on:
+#       cluster_sync_1:
+#         condition: service_started
 
-  client_2:
-    environment:
-      - ID=1
-      - PORT=5001
-    build:    
-      context: .
-      dockerfile: client/Dockerfile
-    depends_on:
-      cluster_sync_2:
-        condition: service_started
+#   client_2:
+#     environment:
+#       - ID=1
+#       - PORT=5001
+#     build:    
+#       context: .
+#       dockerfile: client/Dockerfile
+#     depends_on:
+#       cluster_sync_2:
+#         condition: service_started
 
-  client_3:
-    environment:
-      - ID=2
-      - PORT=5002
-    build:    
-      context: .
-      dockerfile: client/Dockerfile
-    depends_on:
-      cluster_sync_3:
-        condition: service_started
+#   client_3:
+#     environment:
+#       - ID=2
+#       - PORT=5002
+#     build:    
+#       context: .
+#       dockerfile: client/Dockerfile
+#     depends_on:
+#       cluster_sync_3:
+#         condition: service_started
 
-  client_4:
-    environment:
-      - ID=3
-      - PORT=5003
-    build:    
-      context: .
-      dockerfile: client/Dockerfile
-    depends_on:
-      cluster_sync_4:
-        condition: service_started
+#   client_4:
+#     environment:
+#       - ID=3
+#       - PORT=5003
+#     build:    
+#       context: .
+#       dockerfile: client/Dockerfile
+#     depends_on:
+#       cluster_sync_4:
+#         condition: service_started
 
-  client_5:
-    environment:
-      - ID=4
-      - PORT=5004
-    build:    
-      context: .
-      dockerfile: client/Dockerfile
-    depends_on:
-      cluster_sync_5:
-        condition: service_started
+#   client_5:
+#     environment:
+#       - ID=4
+#       - PORT=5004
+#     build:    
+#       context: .
+#       dockerfile: client/Dockerfile
+#     depends_on:
+#       cluster_sync_5:
+#         condition: service_started
 
 
 #--------------------------- CLUSTER STORE --------------------------
+  cluster_store_1:
+    environment:
+      - ID=0
+      - PORT=7000
+      - CLUSTER_PORT=7100
 
-  # cluster_store_1:
-  #   environment:
-  #     - ID=0
-  #     - PORT=7000
-  #     - CLUSTER_PORT=7100
-  #   ports:
-  #     - "7000:7000"
-  #     - "7100:7100"
-  #   build:
-  #     context: .
-  #     dockerfile: cluster_store/Dockerfile
-  #   volumes:
-  #     - ./shared_data:/shared
+    ports:
+      - "7000:7000"
+      - "7100:7100"
+    build:
+      context: .
+      dockerfile: cluster_store/Dockerfile
+    volumes:
+      - ./shared_data:/shared
 
-  # cluster_store_2:
-  #   environment:
-  #     - ID=1
-  #     - PORT=7001
-  #     - CLUSTER_PORT=7101
-  #   ports:
-  #     - "7001:7001"
-  #     - "7101:7101"
-  #   build:
-  #     context: .
-  #     dockerfile: cluster_store/Dockerfile
-  #   volumes:
-  #     - ./shared_data:/shared
+  cluster_store_2:
+    environment:
+      - ID=1
+      - PORT=7001 #PRIMÁRIO PARA O CLIENTE
+      - CLUSTER_PORT=7101
 
-  # cluster_store_3:
-  #   environment:
-  #     - ID=2
-  #     - PORT=7002
-  #     - CLUSTER_PORT=7102
-  #   ports:
-  #     - "7002:7002"
-  #     - "7102:7102"
-  #   build:
-  #     context: .
-  #     dockerfile: cluster_store/Dockerfile
-  #   volumes:
-  #     - ./shared_data:/shared
+    ports:
+      - "7001:7001"
+      - "7101:7101"
+    build:
+      context: .
+      dockerfile: cluster_store/Dockerfile
+    volumes:
+      - ./shared_data:/shared
+
+  cluster_store_3:
+    environment:
+      - ID=2
+      - PORT=7002
+      - CLUSTER_PORT=7102
+
+    ports:
+      - "7002:7002"
+      - "7102:7102"
+    build:
+      context: .
+      dockerfile: cluster_store/Dockerfile
+    volumes:
+      - ./shared_data:/shared
