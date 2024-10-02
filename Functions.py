@@ -38,7 +38,10 @@ def extract_message(string):
 def extract_id(string):
     # Ajusta a expressão regular para corresponder ao formato correto
     match = re.search(r"/id\{(\d+)\}", string)
+    return int(match.group(1)) if match else -1
 
+def extract_source_id(string):
+    match = re.search(r"source_id\{(\d+)\}", string)
     return int(match.group(1)) if match else -1
 
 def extract_timestamp(string):
@@ -81,7 +84,5 @@ def compare_by_timestamp(container):
 def beautifull_print(containers):
     for con in containers:
         print(con)
-
-
 
 #--------------------- TEST AREA
