@@ -2,6 +2,7 @@ import socket
 import threading
 import os
 import time
+import random
 
 from Functions import (extract_id, extract_message,
                        extract_timestamp, send_data, create_server, accept_client)
@@ -31,13 +32,15 @@ def listen_store(host, port):
 
 # Função que processa a requisição recebida do cluster
 def process_cluster_request(conn):
+    global message_to_write
     data = conn.recv(1024).decode()
     if not data:
         return
     if "cluster_store" in data:
         with open(backup_file_path, 'a') as f:
-            f.write(f"store_{current_container_id}->\nMensagem: {data}\n")  
+            f.write(f"{data}\n")  
         conn.send("received".encode())
+        message_to_write = ""
     else:
         conn.send("message not processed".encode())
 
@@ -69,13 +72,16 @@ def process_sync_request(conn):
     data = conn.recv(1024).decode()
     if not data:
         return
+    if (random.randint(1, 100)) < 100:
+        conn.send("refused".encode())
+        return
+    
     if "cluster_sync" in data and message_to_write == "":
-        message_to_write = f"cluster_store_{current_container_id}/" + data
-        # with open(backup_file_path, 'a') as f:
-        #     f.write(message_to_write)
-        #     f.close
+        message_to_write = f"cluster_store_{current_container_id+1}/" + data[13:]
         broadcast_message_to_cluster(cluster_store, message_to_write)
         conn.send("received".encode())
+        while message_to_write != "":
+            time.sleep(1)
     else:
         conn.send("message not processed".encode())
 
@@ -89,7 +95,7 @@ def broadcast_message_to_cluster(cluster_store, message):
             elif response == "refused":
                 print("ok")
                 break
-            time.sleep(1)
+            #time.sleep(1)
 
 # Criação de arquivo de backup
 with open(backup_file_path, 'w') as f:
@@ -103,19 +109,19 @@ sync_port = int(os.getenv('PORT'))
 threading.Thread(target=listen_store, args=(host, listen_cluster)).start()
 threading.Thread(target=listen_sync, args=(host, sync_port)).start()
 
-if current_container_id == 1:
-    time.sleep(5)   
-    host = f"cluster_store_2"
-    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client_socket.connect((host, 7001))  # Conectar ao servidor
-    try:
-        while True:
-            data = "cluster_sync/tester/"
-            client_socket.send(data.encode('utf-8'))
-            break
-    except OSError as e:
-        print(f"Erro ao enviar dados: {e}")
-    except KeyboardInterrupt:
-        client_socket.close()
-    finally:
-        client_socket.close()  # Fechar o socket do cliente    
+# if current_container_id == 1:
+#     time.sleep(5)   
+#     host = f"cluster_store_2"
+#     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#     client_socket.connect((host, 7001))  # Conectar ao servidor
+#     try:
+#         while True:
+#             data = "cluster_sync/tester/"
+#             client_socket.send(data.encode('utf-8'))
+#             break
+#     except OSError as e:
+#         print(f"Erro ao enviar dados: {e}")
+#     except KeyboardInterrupt:
+#         client_socket.close()
+#     finally:
+#         client_socket.close()  # Fechar o socket do cliente    

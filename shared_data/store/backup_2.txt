@@ -1,2 +1,0 @@
-store_2->
-Mensagem: cluster_store_1/cluster_sync/tester/

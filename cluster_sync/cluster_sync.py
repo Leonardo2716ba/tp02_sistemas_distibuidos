@@ -14,6 +14,7 @@ shared_file = '/shared/output.txt'
 cabecalho = "cluster/id{"+str(container_id)+"}"
 ok_message = cabecalho + "/OK"
 containers = create_containers(5)
+test_sync = [{'id': i, 'cluster_port': 7001 + i} for i in range(1)]
 
 
 # Variáveis globais
@@ -70,6 +71,38 @@ def send_message(container, message):
     except ConnectionRefusedError:
         print(f"Falha ao conectar no container {container['id']}")
         return -2
+
+# Função para enviar mensagem a outro container e receber resposta
+def send_to_store(message):
+    try:
+        while True:
+            # Primeira tentativa de conexão
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                sock.connect((f"cluster_store_2", 7001))
+                sock.send(message.encode())
+                response = sock.recv(1024).decode()
+                if response == "received":
+                    return response
+
+            # Caso a primeira falhe, faz nova tentativa de conexão
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                sock.connect((f"cluster_store_1", 7000))
+                sock.send(message.encode())
+                response = sock.recv(1024).decode()
+                if response == "received":
+                    return response
+            # Caso a primeira falhe, faz nova tentativa de conexão
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                sock.connect((f"cluster_store_3", 7002))
+                sock.send(message.encode())
+                response = sock.recv(1024).decode()
+                if response == "received":
+                    return response
+                    
+    except ConnectionRefusedError:
+        print(f"Falha ao conectar no container --")
+        return -2
+
 
 
 # Função que inicia o ciclo de votação periodicamente
@@ -135,7 +168,7 @@ def vote_and_write():
     for con in containers:
         if con['timestamp'] < client_timestamp:
             while send_message(con, ok_message) != "received":
-                time.sleep(1)
+                time.sleep(0.2)
         if con['timestamp'] > client_timestamp:
             send_release = False
 
@@ -145,11 +178,15 @@ def vote_and_write():
                 with open(shared_file, 'a') as f:
                     f.write(f"Container {container_id} \n")
                     f.write(f"Mensagem: {message_to_write}\n")  # Adiciona a mensagem recebida
-                    break
+                #if send_release:
+                #    message_to_write = message_to_write + "\n####################################"
+                while send_to_store(f"cluster_sync/{message_to_write}") != "received":
+                    time.sleep(0.1)
+                break
             else:
                 break
         else:
-           time.sleep(0.2)
+           time.sleep(0.1)
 
     for con in containers:
         if con['timestamp'] > client_timestamp:
@@ -163,16 +200,18 @@ def vote_and_write():
         with open(shared_file, 'a') as f:
             f.write(f"########################################################\n")
 
-    sorted_containers = sorted(containers, key=compare_by_timestamp)
-    with open("/shared/debug.txt", 'a') as f:
-        f.write(f"{container_id} =============== {client_timestamp} =================\n")
-        for c in sorted_containers:
-            f.write(f"{c}\n")
+    #sorted_containers = sorted(containers, key=compare_by_timestamp)
+    #with open("/shared/debug.txt", 'a') as f:
+    #    f.write(f"{container_id} =============== {client_timestamp} =================\n")
+    #    for c in sorted_containers:
+    #        f.write(f"{c}\n")
 
 
 if container_id == 0:
     with open(shared_file, 'w') as f:
         f.write("")
+    with open("/shared/debug.txt", 'w') as d:
+        d.write("")
 
 
 #Cria servidor para escutar o cliente
