@@ -10,6 +10,12 @@ from Functions import (extract_id, extract_message,
 # Variáveis de ambiente
 current_container_id = int(os.getenv('ID'))
 backup_file_path = f"/shared/store/backup_{current_container_id}.txt"
+failure_lim = 0
+n_messages = 0
+if current_container_id == 0:
+    failure_lim = 18
+elif current_container_id == 1:
+    failure_lim = 10
 
 message_to_write = ""
 cluster_store = [{'id': i, 'cluster_port': 7100 + i} for i in range(3)]
@@ -32,17 +38,23 @@ def listen_store(host, port):
 
 # Função que processa a requisição recebida do cluster
 def process_cluster_request(conn):
-    global message_to_write
+    global message_to_write, n_messages, failure_lim
     data = conn.recv(1024).decode()
     if not data:
         return
+    
+    if current_container_id == 0 or current_container_id == 1:
+        if n_messages > failure_lim:
+            conn.send("refused".encode())
+            return
+        
     if "cluster_store" in data:
         with open(backup_file_path, 'a') as f:
             f.write(f"{data}\n")  
         conn.send("received".encode())
         message_to_write = ""
     else:
-        conn.send("message not processed".encode())
+        conn.send("refused".encode())
 
 # Função para enviar mensagem a outro container e receber resposta
 def send_cluster_message(container, message):
@@ -68,18 +80,22 @@ def listen_sync(host, port):
 
 # Função que processa a requisição de sincronização do cluster
 def process_sync_request(conn):
-    global message_to_write
+    global message_to_write, failure_lim, n_messages
     data = conn.recv(1024).decode()
     if not data:
         return
-    if (random.randint(1, 100)) < 100:
-        conn.send("refused".encode())
-        return
     
+    if current_container_id == 0 or current_container_id == 1:
+        if n_messages > failure_lim:
+            conn.send("refused".encode())
+            return
+        
     if "cluster_sync" in data and message_to_write == "":
-        message_to_write = f"cluster_store_{current_container_id+1}/" + data[13:]
+        message_to_write = f"cluster_store_{current_container_id}/" + data[13:]
         broadcast_message_to_cluster(cluster_store, message_to_write)
         conn.send("received".encode())
+        if current_container_id == 0 or current_container_id == 1:
+            n_messages += 1
         while message_to_write != "":
             time.sleep(1)
     else:
