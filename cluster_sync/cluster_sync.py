@@ -33,7 +33,6 @@ def server():
             conn, _ = server_socket.accept()
             handle_request(conn)
             conn.close()
-
             
 
 # Função que processa a requisição recebida do cluster
@@ -78,20 +77,21 @@ def send_to_store(message):
         while True:
             # Primeira tentativa de conexão
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-                sock.connect((f"cluster_store_2", 7001))
-                sock.send(message.encode())
-                response = sock.recv(1024).decode()
-                if response == "received":
-                    return response
-
-            # Caso a primeira falhe, faz nova tentativa de conexão
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
                 sock.connect((f"cluster_store_1", 7000))
                 sock.send(message.encode())
                 response = sock.recv(1024).decode()
                 if response == "received":
                     return response
+                
             # Caso a primeira falhe, faz nova tentativa de conexão
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                sock.connect((f"cluster_store_2", 7001))
+                sock.send(message.encode())
+                response = sock.recv(1024).decode()
+                if response == "received":
+                    return response
+                
+            # Caso a Segunda, faz nova tentativa de conexão
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
                 sock.connect((f"cluster_store_3", 7002))
                 sock.send(message.encode())
@@ -101,6 +101,9 @@ def send_to_store(message):
                     
     except ConnectionRefusedError:
         print(f"Falha ao conectar no container --")
+        return -2
+    except ConnectionResetError:
+        print(f"ResetByPeer --")
         return -2
 
 
@@ -120,19 +123,7 @@ def initiate_vote():
             containers = create_containers(5)
             break
 
-# Função que inicia o ciclo de votação periodicamente
-def _vote():
-    global containers, message_to_write
-    while True:
-        containers = create_containers(5)
-        for con in containers:
-            con['timestamp'] = float(send_message(con, 'TIMESTAMP'))            
-        if received_timestamps(containers):
-            vote_and_write()
-            while not one_release(containers):
-                time.sleep(0.2)
-            message_to_write = ""
-            break
+
 
 # Função para ouvir as mensagens dos clientes e processar
 def listen_client(client_socket):

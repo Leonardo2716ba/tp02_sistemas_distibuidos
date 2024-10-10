@@ -13,7 +13,7 @@ backup_file_path = f"/shared/store/backup_{current_container_id}.txt"
 failure_lim = 0
 n_messages = 0
 if current_container_id == 0:
-    failure_lim = 18
+    failure_lim = 10
 elif current_container_id == 1:
     failure_lim = 10
 
@@ -43,18 +43,21 @@ def process_cluster_request(conn):
     if not data:
         return
     
-    if current_container_id == 0 or current_container_id == 1:
-        if n_messages > failure_lim:
-            conn.send("refused".encode())
-            return
-        
-    if "cluster_store" in data:
+    if n_messages > failure_lim and current_container_id != 2:
+        conn.send("refused".encode())
+        return
+    
+    if "cluster_store" in data and current_container_id != 2:
         with open(backup_file_path, 'a') as f:
             f.write(f"{data}\n")  
         conn.send("received".encode())
         message_to_write = ""
     else:
-        conn.send("refused".encode())
+        with open(backup_file_path, 'a') as f:
+            f.write(f"{data}\n")  
+        broadcast_message_to_cluster(cluster_store, data)
+        message_to_write = ""
+        conn.send("received".encode())
 
 # Função para enviar mensagem a outro container e receber resposta
 def send_cluster_message(container, message):
@@ -85,25 +88,26 @@ def process_sync_request(conn):
     if not data:
         return
     
-    if current_container_id == 0 or current_container_id == 1:
-        if n_messages > failure_lim:
-            conn.send("refused".encode())
-            return
-        
+    if n_messages > failure_lim and current_container_id != 2:
+        conn.send("refused".encode())
+        return
+    
     if "cluster_sync" in data and message_to_write == "":
         message_to_write = f"cluster_store_{current_container_id}/" + data[13:]
-        broadcast_message_to_cluster(cluster_store, message_to_write)
-        conn.send("received".encode())
-        if current_container_id == 0 or current_container_id == 1:
-            n_messages += 1
+        send_to_primary(message_to_write)
         while message_to_write != "":
             time.sleep(1)
+        conn.send("received".encode())
+        n_messages+=1
     else:
         conn.send("message not processed".encode())
+
 
 # Função para difundir (broadcast) a mensagem para o cluster
 def broadcast_message_to_cluster(cluster_store, message):
     for c in cluster_store:
+        if c['id'] == current_container_id:
+            continue
         while True:
             response = send_cluster_message(c, message)
             if response == "received":
@@ -112,6 +116,15 @@ def broadcast_message_to_cluster(cluster_store, message):
                 print("ok")
                 break
             #time.sleep(1)
+
+def send_to_primary(message):
+    c = {'id': 2, 'cluster_port': 7102}
+    while True:
+        response = send_cluster_message(c, message)
+        if response == "received":
+            break
+        elif response == "refused":
+            print("Primario Recusou")
 
 # Criação de arquivo de backup
 with open(backup_file_path, 'w') as f:
@@ -124,20 +137,3 @@ sync_port = int(os.getenv('PORT'))
 
 threading.Thread(target=listen_store, args=(host, listen_cluster)).start()
 threading.Thread(target=listen_sync, args=(host, sync_port)).start()
-
-# if current_container_id == 1:
-#     time.sleep(5)   
-#     host = f"cluster_store_2"
-#     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#     client_socket.connect((host, 7001))  # Conectar ao servidor
-#     try:
-#         while True:
-#             data = "cluster_sync/tester/"
-#             client_socket.send(data.encode('utf-8'))
-#             break
-#     except OSError as e:
-#         print(f"Erro ao enviar dados: {e}")
-#     except KeyboardInterrupt:
-#         client_socket.close()
-#     finally:
-#         client_socket.close()  # Fechar o socket do cliente    
