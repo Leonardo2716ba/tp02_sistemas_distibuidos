@@ -11,6 +11,7 @@ from Functions import (extract_id, extract_message,
 current_container_id = int(os.getenv('ID'))
 backup_file_path = f"/shared/store/backup_{current_container_id}.txt"
 failure_lim = 0
+failure = False
 n_messages = 0
 if current_container_id == 0:
     failure_lim = 10
@@ -33,31 +34,36 @@ def listen_store(host, port):
         print(f"Container {current_container_id} ouvindo na porta {port}...")
         while True:
             conn, _ = server_socket.accept()
-            process_cluster_request(conn)
+            process_store_request(conn)
             conn.close()
 
 # Função que processa a requisição recebida do cluster
-def process_cluster_request(conn):
-    global message_to_write, n_messages, failure_lim
+def process_store_request(conn):
+    global message_to_write, n_messages, failure_lim, failure
     data = conn.recv(1024).decode()
     if not data:
         return
     
-    if n_messages > failure_lim and current_container_id != 2:
+    if failure:
         conn.send("refused".encode())
         return
-    
+    #Elemento qualquer do store
     if "cluster_store" in data and current_container_id != 2:
         with open(backup_file_path, 'a') as f:
             f.write(f"{data}\n")  
         conn.send("received".encode())
         message_to_write = ""
+    #Primario
     else:
         with open(backup_file_path, 'a') as f:
             f.write(f"{data}\n")  
+        #Envia mensagem para outros elementos escrever
         broadcast_message_to_cluster(cluster_store, data)
-        message_to_write = ""
+
+        # Apos retorno dos elementos retorna a confirmação de escrita
+        #para o elemento do store que primeiro contatou
         conn.send("received".encode())
+        message_to_write = ""
 
 # Função para enviar mensagem a outro container e receber resposta
 def send_cluster_message(container, message):
@@ -83,12 +89,12 @@ def listen_sync(host, port):
 
 # Função que processa a requisição de sincronização do cluster
 def process_sync_request(conn):
-    global message_to_write, failure_lim, n_messages
+    global message_to_write, failure_lim, n_messages, failure
     data = conn.recv(1024).decode()
     if not data:
         return
     
-    if n_messages > failure_lim and current_container_id != 2:
+    if failure:
         conn.send("refused".encode())
         return
     
@@ -99,6 +105,10 @@ def process_sync_request(conn):
             time.sleep(1)
         conn.send("received".encode())
         n_messages+=1
+
+        if n_messages > failure_lim and current_container_id != 2:
+            failure = True
+    
     else:
         conn.send("message not processed".encode())
 

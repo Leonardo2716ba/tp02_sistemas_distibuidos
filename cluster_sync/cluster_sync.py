@@ -112,12 +112,15 @@ def send_to_store(message):
 def initiate_vote():
     global containers, message_to_write, client_timestamp
     while True:
+        #Pergunta o timestamp dos elementos
         for con in containers:
             con['timestamp'] = float(send_message(con, 'TIMESTAMP'))
         while received_timestamps(containers):
             vote_and_write()
+            #Espera receber release
             while not one_release(containers):
                 time.sleep(0.2)
+            #Reset nas variaveis
             client_timestamp = -2
             message_to_write = ""
             containers = create_containers(5)
@@ -155,7 +158,7 @@ def vote_and_write():
         print(f"Container {container_id} não tem containers interessados para comparar.")
         return
 
-    #Envia para os containers com timestamp menor que o meu
+    #Envia OK para elementos com timestamp MAIOR que o meu
     for con in containers:
         if con['timestamp'] < client_timestamp:
             while send_message(con, ok_message) != "received":
@@ -166,11 +169,12 @@ def vote_and_write():
     while True:
         if received_oks(containers):
             if message_to_write != "":
+                ## Parte do TP02 - Onde ficava sleep
                 with open(shared_file, 'a') as f:
                     f.write(f"Container {container_id} \n")
                     f.write(f"Mensagem: {message_to_write}\n")  # Adiciona a mensagem recebida
-                #if send_release:
-                #    message_to_write = message_to_write + "\n####################################"
+
+                ## Parte do TP03 - Envia para o Cluster Store
                 while send_to_store(f"cluster_sync/{message_to_write}") != "received":
                     time.sleep(0.1)
                 break
@@ -178,19 +182,20 @@ def vote_and_write():
                 break
         else:
            time.sleep(0.1)
-
+    #Envia Ok para elementos com timestamp maior que o meu
     for con in containers:
         if con['timestamp'] > client_timestamp:
             while True:
                 if send_message(con, ok_message) == "received":
                     break
-
+    #Envia release para outros elementos
     if send_release:
         for con in containers:
             send_message(con, f"{cabecalho} RELEASE")
         with open(shared_file, 'a') as f:
             f.write(f"########################################################\n")
 
+    ### ----------------------- DEBUG
     #sorted_containers = sorted(containers, key=compare_by_timestamp)
     #with open("/shared/debug.txt", 'a') as f:
     #    f.write(f"{container_id} =============== {client_timestamp} =================\n")
