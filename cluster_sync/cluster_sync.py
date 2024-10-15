@@ -175,6 +175,8 @@ def vote_and_write():
                     f.write(f"Mensagem: {message_to_write}\n")  # Adiciona a mensagem recebida
 
                 ## Parte do TP03 - Envia para o Cluster Store
+                if send_release:
+                    message_to_write = message_to_write + "\n"
                 while send_to_store(f"cluster_sync/{message_to_write}") != "received":
                     time.sleep(0.1)
                 break
@@ -193,7 +195,7 @@ def vote_and_write():
         for con in containers:
             send_message(con, f"{cabecalho} RELEASE")
         with open(shared_file, 'a') as f:
-            f.write(f"########################################################\n")
+            f.write(f"\n")
 
     ### ----------------------- DEBUG
     #sorted_containers = sorted(containers, key=compare_by_timestamp)

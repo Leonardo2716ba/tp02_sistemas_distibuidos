@@ -2,6 +2,7 @@ import socket
 import time
 import random
 from Functions import *
+from datetime import datetime
 
 def main():
     host = '0.0.0.0'
@@ -19,6 +20,8 @@ def main():
         while True:
             if not commited:
                 timestamp = random.randint(100000, 999999)
+                #now = datetime.now()
+                #timestamp = now.timestamp()
                 commited = True
             message = f"client[{client_id}] - {timestamp} - M[{i}]"
             data = "client/id{"+ str(client_id) +"}/timestamp{"+ str(timestamp) + "}/message{"+ str(message) +"}"
