@@ -35,20 +35,6 @@ def extract_id(string):
 
     return int(match.group(1)) if match else -1
 
-def extract_time_stamp(string):
-    # Ajusta a expressão regular para corresponder ao formato correto
-    match = re.search(r"timestamp\{(\d+)\}", string)
-    return int(match.group(1)) if match else -1
-
-def write_timestamp_and_id(message):
-    container_id = int(os.getenv('PORT')) - 5000
-    #timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    timestamp = extract_time_stamp(message)
-    client_id = extract_id(message)
-    w_message = extract_message(message)
-    print(f"ID: {container_id}, Client:{client_id}, Timestamp: {timestamp}, Message: {w_message}")
-    with open(file_path, "a") as f:
-        f.write(f"ID: {container_id}, Client:{client_id}, Timestamp: {timestamp}, Message: {w_message}\n")
 
 def create_server(host,port):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

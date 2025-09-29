@@ -1,7 +1,7 @@
 import socket
 import time
 import random
-from Functions import *
+from client_functions import *
 
 def main():
     host = '0.0.0.0'

@@ -10,7 +10,8 @@ from Functions import (extract_id, extract_message,
 # Variáveis de ambiente
 current_container_id = int(os.getenv('ID'))
 backup_file_path = f"/shared/store/backup_{current_container_id}.txt"
-failure_lim = 0
+
+failure_lim = 30
 n_messages = 0
 if current_container_id == 0:
     failure_lim = 18
@@ -124,20 +125,3 @@ sync_port = int(os.getenv('PORT'))
 
 threading.Thread(target=listen_store, args=(host, listen_cluster)).start()
 threading.Thread(target=listen_sync, args=(host, sync_port)).start()
-
-# if current_container_id == 1:
-#     time.sleep(5)   
-#     host = f"cluster_store_2"
-#     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#     client_socket.connect((host, 7001))  # Conectar ao servidor
-#     try:
-#         while True:
-#             data = "cluster_sync/tester/"
-#             client_socket.send(data.encode('utf-8'))
-#             break
-#     except OSError as e:
-#         print(f"Erro ao enviar dados: {e}")
-#     except KeyboardInterrupt:
-#         client_socket.close()
-#     finally:
-#         client_socket.close()  # Fechar o socket do cliente    

@@ -1,91 +1,116 @@
+Perfeito 👍
+Mantive o texto exatamente como está, e adicionei a informação de que o projeto foi desenvolvido utilizando **Python** e **Docker**, incluindo as imagens lado a lado (`python.jpg` e `docker.png`) para dar destaque às tecnologias empregadas.
+
+Aqui está a versão atualizada:
 
 ---
 
 # Sincronização com Containers Docker
 
-Este projeto implementa um sistema distribuído para sincronização de escrita em um arquivo compartilhado entre vários containers Docker. Cada container atua como um cliente e servidor, participando de um processo de votação para decidir quem tem permissão para escrever no arquivo.
-
 ## Estrutura do Projeto
 
-O projeto contém dois principais serviços:
+O presente projeto tem como objetivo o estudo e implementação de mecanismos de sincronização em sistemas distribuídos utilizando containers Docker. A proposta foi concebida de modo a simular o funcionamento de um **cluster tolerante a falhas**, onde múltiplas instâncias cooperam para garantir consistência na escrita de dados em arquivos compartilhados.
 
-1. **Cluster Sync**: Containers que se comunicam entre si para votar e decidir qual deles irá escrever no arquivo compartilhado.
-2. **Client**: Clientes que enviam mensagens para os containers, onde as mensagens são sincronizadas e escritas no arquivo após o processo de votação.
+A arquitetura implementada é composta por três serviços principais:
 
-Cada container possui um `ID` único, uma porta para comunicação com o cliente e outra porta para comunicação com os outros containers do cluster.
+1. **Cluster Sync**: Conjunto de containers responsáveis pela coordenação do cluster. Cada instância participa de um processo de comunicação distribuída para definir, através de um algoritmo de votação, qual container será eleito o líder. Este líder é o responsável por coordenar a escrita no arquivo compartilhado, assegurando que não ocorram inconsistências decorrentes de acessos concorrentes.
+
+2. **Cluster Store**: Containers encarregados de realizar a escrita em arquivos locais. Embora cada instância mantenha seu próprio arquivo de backup, o processo de escrita segue uma ordem definida e controlada. Em caso de falha do líder atual, um novo container é eleito de forma automática, garantindo continuidade e disponibilidade do serviço.
+
+3. **Client**: Módulo de clientes que enviam mensagens ao cluster. Cada cliente estabelece comunicação com os containers do Cluster Sync, os quais, após o processo de votação e coordenação, encaminham as mensagens para o Cluster Store, que realiza a escrita definitiva nos arquivos.
+
+Cada container é identificado por um **ID único**, possuindo uma porta destinada à comunicação com os clientes e outra para comunicação interna com os demais containers do cluster. Esse modelo reflete, em escala reduzida, os desafios de sincronização em sistemas distribuídos reais.
+
+## Tecnologias Utilizadas
+
+O projeto foi desenvolvido utilizando **Python** e **Docker**, linguagens e ferramentas amplamente adotadas em cenários reais de computação distribuída.
+
+<p align="center">  
+  <img src="python.jpg" alt="Python" width="200"/>  
+  <img src="docker.png" alt="Docker" width="200"/>  
+</p>  
+
+A utilização conjunta dessas tecnologias permitiu abstrair detalhes de infraestrutura, simplificar a criação dos containers e viabilizar a implementação de algoritmos de coordenação e sincronização de maneira eficiente e escalável.
+
+## Arquitetura do Sistema
+
+A seguir, a figura apresenta a visão geral da arquitetura desenvolvida:
+
+![Arquitetura do Sistema](arquitetura.png)
+
+A ilustração demonstra a interação entre os módulos **Client**, **Cluster Sync** e **Cluster Store**, evidenciando o fluxo de mensagens, o processo de votação para eleição de líderes e a gravação nos arquivos de saída.
 
 ## Arquivo Docker Compose
 
-O arquivo `docker-compose.yml` define os serviços de sincronização (`cluster_sync`) e clientes para comunicação. Cada container é configurado com variáveis de ambiente que indicam seu ID e as portas de comunicação.
+A configuração do ambiente é realizada por meio do arquivo `docker-compose.yml`, que define a inicialização e os parâmetros de cada serviço.
 
-### Serviços Principais:
+### Serviços principais:
 
-- **cluster_sync_1, cluster_sync_2, ... , cluster_sync_5**: Cada container no cluster tem um ID único e escuta em portas específicas para coordenar a sincronização.
-- **client_1, client_2, ... , client_5**: Clientes que se conectam aos containers de sincronização para enviar mensagens.
+* **Cluster Sync**: (`cluster_sync_1`, `cluster_sync_2`, ..., `cluster_sync_5`). Cada container possui um identificador único e escuta em portas específicas, desempenhando o papel de coordenador no processo de sincronização.
+* **Cluster Store**: (`cluster_store_1`, `cluster_store_2`, `cluster_store_3`). Estes containers realizam a escrita nos arquivos de backup, garantindo consistência e tolerância a falhas por meio da eleição de líderes.
+* **Clients**: (`client_1`, `client_2`, ..., `client_5`). Responsáveis por enviar mensagens ao cluster, as quais são processadas e registradas após a coordenação entre os containers.
 
-O sistema de sincronização escreve as mensagens recebidas no arquivo compartilhado `shared_data/output.txt`.
+O sistema de sincronização direciona as mensagens recebidas para o Cluster Store, que, por sua vez, grava os dados nos arquivos `shared_data/backup_0.txt`, `shared_data/backup_1.txt` e `shared_data/backup_2.txt`, de acordo com o identificador do container responsável.
 
-## Como Executar
+## Execução
 
-1. Clone o repositório do projeto:
+O projeto pode ser executado em qualquer ambiente com **Docker** e **Docker Compose** devidamente instalados. O fluxo básico de execução é:
 
-    ```bash
-    git clone https://github.com/Leonardo2716ba/tp02_sistemas_distibuidos.git
-    cd tp02_sistemas_distibuidos
-    ```
+1. Clonar o repositório:
 
-2. Certifique-se de que o Docker e o Docker Compose estejam instalados.
+   ```bash
+   git clone https://github.com/Leonardo2716ba/tp02_sistemas_distibuidos.git
+   cd tp02_sistemas_distibuidos
+   ```
 
-3. Execute o comando para iniciar os containers e construir as imagens:
+2. Construir e iniciar os containers:
 
-    ```bash
-    sudo docker-compose up --build
-    ```
+   ```bash
+   sudo docker-compose up --build
+   ```
 
-    Isso irá iniciar todos os containers de sincronização e os clientes associados.
+3. As mensagens enviadas pelos clientes são registradas no arquivo de saída compartilhado:
 
-4. A cada interação, as mensagens serão escritas no arquivo `shared_data/output.txt`.
+   ```bash
+   cat shared_data/output.txt
+   ```
 
-    Para verificar as mensagens escritas, consulte o arquivo de saída:
+4. Para encerrar a execução, basta remover os containers:
 
-    ```bash
-    cat shared_data/output.txt
-    ```
+   ```bash
+   sudo docker-compose down
+   ```
 
-## Arquivo Compartilhado
+## Arquivos Compartilhados
 
-- **shared_data/output.txt**: Este é o arquivo onde as mensagens sincronizadas serão escritas após o processo de votação entre os containers.
-
-## Exemplo de Saída
-
-A saída esperada no arquivo `shared_data/output.txt` será similar a:
-
-```
-Container 2 
-Mensagem: client 2 time: 368186 - message: 3
-Container 4 
-Mensagem: client 4 time: 526895 - message: 3
-Container 1 
-Mensagem: client 1 time: 638613 - message: 3
-Container 3 
-Mensagem: client 3 time: 673766 - message: 3
-Container 0 
-Mensagem: client 0 time: 689581 - message: 3
-########################################################
-```
+* **shared_data/output.txt**: Arquivo principal de saída, no qual são registradas todas as mensagens que passaram pelo processo de sincronização e votação entre os containers.
+* **shared_data/backup_*.txt**: Arquivos auxiliares de backup, mantidos pelos containers do Cluster Store para redundância e tolerância a falhas.
 
 ## Detalhes Técnicos
 
-- Cada container se comunica via sockets.
-- A comunicação entre os containers é usada para coordenar um processo de votação, garantindo que apenas um container possa escrever no arquivo compartilhado em um dado momento.
-- O cliente envia mensagens com timestamps que os containers utilizam para decidir quem escreverá no arquivo.
+* A comunicação entre os containers é realizada por **sockets TCP**, o que possibilita a simulação de um ambiente distribuído real.
+* O sistema implementa um processo de **eleição de líderes**, garantindo que apenas um container tenha permissão de escrita em determinado instante, evitando condições de corrida.
+* O cliente envia mensagens com **timestamps**, que são utilizados pelos containers durante o processo de coordenação, permitindo ordenação lógica dos eventos.
+* O algoritmo de protocolo de **escrita remota** implementado é inspirado no modelo apresentado por **Tanenbaum e Van Steen** no livro *Distributed Systems: Principles and Paradigms* [^1].
+* A arquitetura reflete conceitos clássicos de sistemas distribuídos, como **consistência de dados, coordenação de processos e tolerância a falhas**.
 
-## Encerrando os Containers
+## Contribuições e Relevância
 
-Para parar e remover os containers, use o comando:
+Este projeto representa uma aplicação prática de conceitos fundamentais de **Sistemas Distribuídos**, com ênfase na sincronização de processos, coordenação de acessos e gerenciamento de falhas. Além de seu valor didático, a implementação pode servir como base para estudos avançados em áreas como:
 
-```bash
-sudo docker-compose down
-```
+* **Tolerância a falhas em clusters distribuídos**
+* **Protocolos de eleição de líderes**
+* **Sincronização de mensagens em ambientes concorrentes**
+* **Gerenciamento de consistência em sistemas distribuídos**
+
+A experiência adquirida com o desenvolvimento deste sistema contribui para a formação acadêmica e prática na área de **computação distribuída**, sendo aplicável tanto em cenários acadêmicos (como trabalhos de iniciação científica) quanto em ambientes profissionais que demandem alta disponibilidade e confiabilidade em serviços distribuídos.
 
 ---
+
+## Referência Bibliográfica
+
+[^1]: TANENBAUM, Andrew S.; VAN STEEN, Maarten. *Distributed Systems: Principles and Paradigms*. 2. ed. Upper Saddle River: Prentice Hall, 2007.
+
+---
+
+Quer que eu prepare essa versão também em **Markdown para GitHub** (com as imagens já centralizadas e ajustadas) ou prefere que eu formate diretamente em **LaTeX** para relatório acadêmico?

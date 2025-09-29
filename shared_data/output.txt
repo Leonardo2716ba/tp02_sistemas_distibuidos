@@ -1,110 +1,231 @@
 Container 3 
-Mensagem: client[3] - 485014 - M[0]
+Mensagem: client[3] - 307326 - M[0]
 Container 4 
-Mensagem: client[4] - 619701 - M[0]
-Container 1 
-Mensagem: client[1] - 826717 - M[0]
+Mensagem: client[4] - 555030 - M[0]
 Container 2 
-Mensagem: client[2] - 860679 - M[0]
-Container 0 
-Mensagem: client[0] - 961313 - M[0]
-########################################################
+Mensagem: client[2] - 711752 - M[0]
 Container 1 
-Mensagem: client[1] - 102513 - M[1]
-Container 2 
-Mensagem: client[2] - 188754 - M[1]
+Mensagem: client[1] - 816118 - M[0]
 Container 0 
-Mensagem: client[0] - 603291 - M[1]
-Container 4 
-Mensagem: client[4] - 739344 - M[1]
-Container 3 
-Mensagem: client[3] - 999717 - M[1]
-########################################################
-Container 1 
-Mensagem: client[1] - 107860 - M[2]
-Container 3 
-Mensagem: client[3] - 473393 - M[2]
-Container 4 
-Mensagem: client[4] - 545409 - M[2]
-Container 2 
-Mensagem: client[2] - 763064 - M[2]
-Container 0 
-Mensagem: client[0] - 918458 - M[2]
-########################################################
-Container 4 
-Mensagem: client[4] - 240829 - M[3]
-Container 2 
-Mensagem: client[2] - 368269 - M[3]
-Container 1 
-Mensagem: client[1] - 441765 - M[3]
-Container 0 
-Mensagem: client[0] - 583627 - M[3]
-Container 3 
-Mensagem: client[3] - 712297 - M[3]
+Mensagem: client[0] - 981346 - M[0]
 ########################################################
 Container 2 
-Mensagem: client[2] - 403047 - M[4]
+Mensagem: client[2] - 120115 - M[1]
 Container 0 
-Mensagem: client[0] - 730480 - M[4]
-Container 1 
-Mensagem: client[1] - 770262 - M[4]
+Mensagem: client[0] - 139608 - M[1]
 Container 4 
-Mensagem: client[4] - 791996 - M[4]
+Mensagem: client[4] - 166919 - M[1]
+Container 1 
+Mensagem: client[1] - 469988 - M[1]
 Container 3 
-Mensagem: client[3] - 843149 - M[4]
+Mensagem: client[3] - 867198 - M[1]
 ########################################################
 Container 3 
-Mensagem: client[3] - 152055 - M[5]
-Container 2 
-Mensagem: client[2] - 176309 - M[5]
-Container 4 
-Mensagem: client[4] - 326321 - M[5]
+Mensagem: client[3] - 133818 - M[2]
 Container 1 
-Mensagem: client[1] - 535495 - M[5]
+Mensagem: client[1] - 436780 - M[2]
+Container 4 
+Mensagem: client[4] - 539738 - M[2]
 Container 0 
-Mensagem: client[0] - 557004 - M[5]
+Mensagem: client[0] - 746615 - M[2]
+Container 2 
+Mensagem: client[2] - 932146 - M[2]
 ########################################################
-Container 0 
-Mensagem: client[0] - 171705 - M[6]
-Container 2 
-Mensagem: client[2] - 268193 - M[6]
-Container 3 
-Mensagem: client[3] - 439742 - M[6]
 Container 4 
-Mensagem: client[4] - 878731 - M[6]
-Container 1 
-Mensagem: client[1] - 929624 - M[6]
-########################################################
-Container 1 
-Mensagem: client[1] - 324540 - M[7]
+Mensagem: client[4] - 255807 - M[3]
 Container 0 
-Mensagem: client[0] - 354598 - M[7]
-Container 2 
-Mensagem: client[2] - 862309 - M[7]
-Container 4 
-Mensagem: client[4] - 899546 - M[7]
-Container 3 
-Mensagem: client[3] - 998027 - M[7]
-########################################################
+Mensagem: client[0] - 287216 - M[3]
 Container 1 
-Mensagem: client[1] - 185869 - M[8]
-Container 0 
-Mensagem: client[0] - 271223 - M[8]
+Mensagem: client[1] - 458783 - M[3]
 Container 2 
-Mensagem: client[2] - 283729 - M[8]
+Mensagem: client[2] - 605980 - M[3]
 Container 3 
-Mensagem: client[3] - 499315 - M[8]
-Container 4 
-Mensagem: client[4] - 973704 - M[8]
+Mensagem: client[3] - 705021 - M[3]
 ########################################################
 Container 2 
-Mensagem: client[2] - 329510 - M[9]
-Container 3 
-Mensagem: client[3] - 361694 - M[9]
-Container 1 
-Mensagem: client[1] - 529711 - M[9]
+Mensagem: client[2] - 364962 - M[4]
 Container 0 
-Mensagem: client[0] - 736530 - M[9]
+Mensagem: client[0] - 402455 - M[4]
 Container 4 
-Mensagem: client[4] - 951757 - M[9]
+Mensagem: client[4] - 828887 - M[4]
+Container 1 
+Mensagem: client[1] - 908842 - M[4]
+Container 3 
+Mensagem: client[3] - 992878 - M[4]
+########################################################
+Container 1 
+Mensagem: client[1] - 230091 - M[5]
+Container 2 
+Mensagem: client[2] - 294310 - M[5]
+Container 3 
+Mensagem: client[3] - 532516 - M[5]
+Container 4 
+Mensagem: client[4] - 576911 - M[5]
+Container 0 
+Mensagem: client[0] - 764294 - M[5]
+########################################################
+Container 4 
+Mensagem: client[4] - 475234 - M[6]
+Container 3 
+Mensagem: client[3] - 614332 - M[6]
+Container 1 
+Mensagem: client[1] - 801694 - M[6]
+Container 0 
+Mensagem: client[0] - 916735 - M[6]
+Container 2 
+Mensagem: client[2] - 920577 - M[6]
+########################################################
+Container 1 
+Mensagem: client[1] - 119080 - M[7]
+Container 3 
+Mensagem: client[3] - 446614 - M[7]
+Container 0 
+Mensagem: client[0] - 462637 - M[7]
+Container 2 
+Mensagem: client[2] - 891324 - M[7]
+Container 4 
+Mensagem: client[4] - 975722 - M[7]
+########################################################
+Container 2 
+Mensagem: client[2] - 593847 - M[8]
+Container 0 
+Mensagem: client[0] - 719519 - M[8]
+Container 4 
+Mensagem: client[4] - 833351 - M[8]
+Container 3 
+Mensagem: client[3] - 972254 - M[8]
+Container 1 
+Mensagem: client[1] - 972770 - M[8]
+########################################################
+Container 3 
+Mensagem: client[3] - 253093 - M[9]
+Container 1 
+Mensagem: client[1] - 610221 - M[9]
+Container 4 
+Mensagem: client[4] - 655052 - M[9]
+Container 0 
+Mensagem: client[0] - 939435 - M[9]
+Container 2 
+Mensagem: client[2] - 949571 - M[9]
+########################################################
+Container 3 
+Mensagem: client[3] - 101540 - M[10]
+Container 1 
+Mensagem: client[1] - 215520 - M[10]
+Container 2 
+Mensagem: client[2] - 543107 - M[10]
+Container 0 
+Mensagem: client[0] - 558015 - M[10]
+Container 4 
+Mensagem: client[4] - 910796 - M[10]
+########################################################
+Container 3 
+Mensagem: client[3] - 194742 - M[11]
+Container 1 
+Mensagem: client[1] - 243587 - M[11]
+Container 4 
+Mensagem: client[4] - 739426 - M[11]
+Container 0 
+Mensagem: client[0] - 782625 - M[11]
+Container 2 
+Mensagem: client[2] - 922974 - M[11]
+########################################################
+Container 4 
+Mensagem: client[4] - 268782 - M[12]
+Container 2 
+Mensagem: client[2] - 616149 - M[12]
+Container 0 
+Mensagem: client[0] - 668011 - M[12]
+Container 3 
+Mensagem: client[3] - 765224 - M[12]
+Container 1 
+Mensagem: client[1] - 788141 - M[12]
+########################################################
+Container 4 
+Mensagem: client[4] - 475114 - M[13]
+Container 1 
+Mensagem: client[1] - 489141 - M[13]
+Container 2 
+Mensagem: client[2] - 514532 - M[13]
+Container 3 
+Mensagem: client[3] - 563887 - M[13]
+Container 0 
+Mensagem: client[0] - 826696 - M[13]
+########################################################
+Container 2 
+Mensagem: client[2] - 331035 - M[14]
+Container 1 
+Mensagem: client[1] - 508993 - M[14]
+Container 3 
+Mensagem: client[3] - 510423 - M[14]
+Container 4 
+Mensagem: client[4] - 654127 - M[14]
+Container 0 
+Mensagem: client[0] - 922100 - M[14]
+########################################################
+Container 2 
+Mensagem: client[2] - 320922 - M[15]
+Container 1 
+Mensagem: client[1] - 509915 - M[15]
+Container 4 
+Mensagem: client[4] - 835391 - M[15]
+Container 3 
+Mensagem: client[3] - 939166 - M[15]
+Container 0 
+Mensagem: client[0] - 948267 - M[15]
+########################################################
+Container 0 
+Mensagem: client[0] - 216190 - M[16]
+Container 1 
+Mensagem: client[1] - 546073 - M[16]
+Container 4 
+Mensagem: client[4] - 723444 - M[16]
+Container 3 
+Mensagem: client[3] - 903512 - M[16]
+Container 2 
+Mensagem: client[2] - 962195 - M[16]
+########################################################
+Container 3 
+Mensagem: client[3] - 714343 - M[17]
+Container 2 
+Mensagem: client[2] - 723899 - M[17]
+Container 0 
+Mensagem: client[0] - 815547 - M[17]
+Container 1 
+Mensagem: client[1] - 968958 - M[17]
+Container 4 
+Mensagem: client[4] - 975695 - M[17]
+########################################################
+Container 0 
+Mensagem: client[0] - 161135 - M[18]
+Container 2 
+Mensagem: client[2] - 551555 - M[18]
+Container 3 
+Mensagem: client[3] - 555833 - M[18]
+Container 1 
+Mensagem: client[1] - 690669 - M[18]
+Container 4 
+Mensagem: client[4] - 861170 - M[18]
+########################################################
+Container 4 
+Mensagem: client[4] - 135625 - M[19]
+Container 3 
+Mensagem: client[3] - 243508 - M[19]
+Container 2 
+Mensagem: client[2] - 455443 - M[19]
+Container 1 
+Mensagem: client[1] - 862587 - M[19]
+Container 0 
+Mensagem: client[0] - 913514 - M[19]
+########################################################
+Container 3 
+Mensagem: client[3] - 130310 - M[20]
+Container 1 
+Mensagem: client[1] - 172358 - M[20]
+Container 0 
+Mensagem: client[0] - 463463 - M[20]
+Container 2 
+Mensagem: client[2] - 514407 - M[20]
+Container 4 
+Mensagem: client[4] - 989037 - M[20]
 ########################################################

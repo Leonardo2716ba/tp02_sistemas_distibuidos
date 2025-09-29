@@ -27,8 +27,8 @@ def send_data(client_socket, message):
         print(f"Falha ao conectar no container {client_socket['id']}")
         return -2  # Retorna -1 para indicar falha na conexão
     except OSError as e:
-        print(f"Erro ao enviar dados: {e}")    
-    
+        print(f"Erro ao enviar dados: {e}")
+
 
 # Função para extrair a mensagem
 def extract_message(string):
@@ -64,19 +64,19 @@ def received_timestamps(containers):
     for con in containers:
         if con['timestamp'] == -2:
             return False
-    return True 
+    return True
 
 def one_release(containers):
     for con in containers:
         if con['rele'] == "YES":
             return True
-    return False 
+    return False
 
 def received_oks(containers):
     for con in containers:
         if con['start'] != 'OK':
             return False
-    return True         
+    return True
 # Função de comparação de timestamps
 def compare_by_timestamp(container):
     return container['timestamp']
