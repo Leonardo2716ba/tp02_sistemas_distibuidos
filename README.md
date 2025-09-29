@@ -1,7 +1,3 @@
-Perfeito 👍
-Mantive o texto exatamente como está, e adicionei a informação de que o projeto foi desenvolvido utilizando **Python** e **Docker**, incluindo as imagens lado a lado (`python.jpg` e `docker.png`) para dar destaque às tecnologias empregadas.
-
-Aqui está a versão atualizada:
 
 ---
 
@@ -96,14 +92,7 @@ O projeto pode ser executado em qualquer ambiente com **Docker** e **Docker Comp
 
 ## Contribuições e Relevância
 
-Este projeto representa uma aplicação prática de conceitos fundamentais de **Sistemas Distribuídos**, com ênfase na sincronização de processos, coordenação de acessos e gerenciamento de falhas. Além de seu valor didático, a implementação pode servir como base para estudos avançados em áreas como:
-
-* **Tolerância a falhas em clusters distribuídos**
-* **Protocolos de eleição de líderes**
-* **Sincronização de mensagens em ambientes concorrentes**
-* **Gerenciamento de consistência em sistemas distribuídos**
-
-A experiência adquirida com o desenvolvimento deste sistema contribui para a formação acadêmica e prática na área de **computação distribuída**, sendo aplicável tanto em cenários acadêmicos (como trabalhos de iniciação científica) quanto em ambientes profissionais que demandem alta disponibilidade e confiabilidade em serviços distribuídos.
+Este projeto representa uma aplicação prática de conceitos fundamentais de **Sistemas Distribuídos**, com ênfase na sincronização de processos, coordenação de acessos e gerenciamento de falhas.
 
 ---
 
@@ -112,5 +101,3 @@ A experiência adquirida com o desenvolvimento deste sistema contribui para a fo
 [^1]: TANENBAUM, Andrew S.; VAN STEEN, Maarten. *Distributed Systems: Principles and Paradigms*. 2. ed. Upper Saddle River: Prentice Hall, 2007.
 
 ---
-
-Quer que eu prepare essa versão também em **Markdown para GitHub** (com as imagens já centralizadas e ajustadas) ou prefere que eu formate diretamente em **LaTeX** para relatório acadêmico?
