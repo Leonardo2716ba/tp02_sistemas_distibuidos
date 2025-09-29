@@ -55,8 +55,8 @@ O projeto pode ser executado em qualquer ambiente com **Docker** e **Docker Comp
 1. Clonar o repositório:
 
    ```bash
-   git clone https://github.com/Leonardo2716ba/tp02_sistemas_distibuidos.git
-   cd tp02_sistemas_distibuidos
+   git clone https://github.com/Leonardo2716ba/cluster_store.git
+   cd cluster_store
    ```
 
 2. Construir e iniciar os containers:
